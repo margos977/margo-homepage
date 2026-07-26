@@ -188,7 +188,12 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "figure":
       return (
-        <Figure label={block.label} caption={block.caption} srcs={block.srcs} />
+        <Figure
+          label={block.label}
+          caption={block.caption}
+          srcs={block.srcs}
+          layout={block.layout}
+        />
       );
   }
 }
@@ -197,10 +202,12 @@ function Figure({
   label,
   caption,
   srcs,
+  layout = "grid",
 }: {
   label: string;
   caption?: string;
   srcs?: string[];
+  layout?: "grid" | "stack";
 }) {
   return (
     <figure className="mt-2">
@@ -209,7 +216,9 @@ function Figure({
           className={
             srcs.length === 1
               ? ""
-              : "grid grid-cols-1 gap-3 sm:grid-cols-2"
+              : layout === "stack"
+                ? "flex flex-col gap-3"
+                : "grid grid-cols-1 gap-3 sm:grid-cols-2"
           }
         >
           {srcs.map((src) => (

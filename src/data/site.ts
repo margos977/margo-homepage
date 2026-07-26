@@ -26,7 +26,13 @@ export type ContentBlock =
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
-  | { kind: "figure"; label: string; caption?: string; srcs?: string[] };
+  | {
+      kind: "figure";
+      label: string;
+      caption?: string;
+      srcs?: string[];
+      layout?: "grid" | "stack";
+    };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -409,6 +415,7 @@ export const caseStudies: CaseStudy[] = [
               label: "Self-Service Map Builder",
               caption:
                 "The self-service flow: set location, add docks, configure slips, then place power and fuel, all without a CSM.",
+              layout: "stack",
               srcs: [
                 "/images/case-studies/marina-map-selfservice-location.webp",
                 "/images/case-studies/marina-map-selfservice-docks.webp",
