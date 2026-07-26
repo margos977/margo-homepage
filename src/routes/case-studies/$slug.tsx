@@ -184,7 +184,7 @@ function Figure({ label, caption }: { label: string; caption: string }) {
     <figure className="mt-2">
       <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
         <span className="label-mono text-center opacity-40">
-          [ IMAGE PLACEHOLDER — {label.toUpperCase()} ]
+          [ IMAGE PLACEHOLDER: {label.toUpperCase()} ]
         </span>
       </div>
       <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">

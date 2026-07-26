@@ -68,7 +68,7 @@ export const caseStudies: CaseStudy[] = [
       headline:
         "Governing what two dozen AI agents say, not just how they look",
       intro: [
-        "When Agent.ai grew to 24 live premium agents, the interface stayed relatively consistent because every team pulled from the same design system. But the content inside those components drifted. One agent showed confidence as a percentage, another as a badge, a third left uncertainty off the output entirely. The visual layer had a clear owner. The layer underneath — what an output contains, how it marks a guess, what it does when data is thin — had none, so it fell to whichever engineer was shipping that agent's prompt.",
+        "When Agent.ai grew to 24 live premium agents, the interface stayed relatively consistent because every team pulled from the same design system. But the content inside those components drifted. One agent showed confidence as a percentage, another as a badge, a third left uncertainty off the output entirely. The visual layer had a clear owner. The layer underneath (what an output contains, how it marks a guess, what it does when data is thin) had none, so it fell to whichever engineer was shipping that agent's prompt.",
       ],
       contextNote:
         'Visuals throughout use a fictional fintech surface, "Aria," as a faithful reconstruction. The original Agent.ai artifacts became HubSpot IP after the 2026 acquisition. The system itself governed 24 live premium agents and was validated by blind test.',
@@ -97,7 +97,7 @@ export const caseStudies: CaseStudy[] = [
       heroFigure: {
         label: "Layer Matrix",
         caption:
-          "The three layers of an AI output: visual, content, and reasoning. The middle one had no owner — that's the work.",
+          "The three layers of an AI output: visual, content, and reasoning. The middle one had no owner. That's the work.",
       },
       sections: [
         {
@@ -109,13 +109,13 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "p",
-              text: "The engineers were doing real work building multi-agent flows, but the specs they got stopped at business goals and mockups. When a payload came back with a missing field, an odd array length, or an ambiguous label, they had to decide on the spot how to render it — what to show, how to mark it, whether to hide the section or flag it. It wasn't a prompt problem or a styling problem. The platform had no content architecture, so edge cases got answered ad hoc in the backend instead of on purpose in design.",
+              text: "The engineers were doing real work building multi-agent flows, but the specs they got stopped at business goals and mockups. When a payload came back with a missing field, an odd array length, or an ambiguous label, they had to decide on the spot how to render it: what to show, how to mark it, whether to hide the section or flag it. It wasn't a prompt problem or a styling problem. The platform had no content architecture, so edge cases got answered ad hoc in the backend instead of on purpose in design.",
             },
             {
               kind: "figure",
               label: "Agent Output Drift",
               caption:
-                "Same data, three agents — prose, invented markup, a dense table — then the same three under one system.",
+                "Same data, three agents (prose, invented markup, a dense table), then the same three under one system.",
             },
           ],
         },
@@ -124,12 +124,12 @@ export const caseStudies: CaseStudy[] = [
           blocks: [
             {
               kind: "lead",
-              text: "Prompt engineering and design tokens each governed a layer; neither governed what the output contained, so I built the layer between them — a content system in three parts.",
+              text: "Prompt engineering and design tokens each governed a layer; neither governed what the output contained, so I built the layer between them: a content system in three parts.",
             },
             {
               kind: "labeledP",
               lead: "A central registry of content types.",
-              text: "The shared dictionary every agent draws from. Its main job is to settle how each kind of content is presented: a given kind of content maps to a specified type and the structural primitive that presents it, the same way every time — so a confidence score isn't a percentage on one agent and a badge on another, and the model can't invent a new shape or reach for the wrong one. Each type also defines its required pieces, its optional metadata, and what it falls back to when data is missing — if a primary metric isn't there, the output falls back to a less precise value rather than shipping an empty string.",
+              text: "The shared dictionary every agent draws from. Its main job is to settle how each kind of content is presented: a given kind of content maps to a specified type and the structural primitive that presents it, the same way every time, so a confidence score isn't a percentage on one agent and a badge on another, and the model can't invent a new shape or reach for the wrong one. Each type also defines its required pieces, its optional metadata, and what it falls back to when data is missing: if a primary metric isn't there, the output falls back to a less precise value rather than shipping an empty string.",
             },
             {
               kind: "figure",
@@ -145,12 +145,12 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Null-States Triptych",
-              caption: "One missing field, three correct behaviors — omit, explain, or flag.",
+              caption: "One missing field, three correct behaviors: omit, explain, or flag.",
             },
             {
               kind: "labeledP",
               lead: "A generator that turns a spec into a reviewable output spec.",
-              text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec — the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering builds from that: structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
+              text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec: the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering builds from that: structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
             },
             {
               kind: "figure",
@@ -170,12 +170,12 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "labeledP",
               lead: "The taxonomy was too granular.",
-              text: "I'd made separate types for a person, a contact, and a user profile — nearly the same structure three times — and the redundancy confused the model during generation more than it helped. I consolidated them into a single Person type with optional flags and wrote a rule against duplicate types.",
+              text: "I'd made separate types for a person, a contact, and a user profile (nearly the same structure three times), and the redundancy confused the model during generation more than it helped. I consolidated them into a single Person type with optional flags and wrote a rule against duplicate types.",
             },
             {
               kind: "labeledP",
               lead: "The input specs were too long.",
-              text: "I'd assumed more background would produce a better output spec, but the extra prose added noise and pushed the model to invent structures that weren't there. Stripping the input to essentials — goals, inputs, and edge-case boundaries — produced cleaner specs. The system reasons better from goals than from prescriptions, so the input got simpler, not richer.",
+              text: "I'd assumed more background would produce a better output spec, but the extra prose added noise and pushed the model to invent structures that weren't there. Stripping the input to essentials (goals, inputs, and edge-case boundaries) produced cleaner specs. The system reasons better from goals than from prescriptions, so the input got simpler, not richer.",
             },
             {
               kind: "labeledP",
@@ -195,11 +195,11 @@ export const caseStudies: CaseStudy[] = [
           blocks: [
             {
               kind: "lead",
-              text: "The real test isn't whether the system works when I run it — it's whether it holds when someone else does, without me in the loop.",
+              text: "The real test isn't whether the system works when I run it: it's whether it holds when someone else does, without me in the loop.",
             },
             {
               kind: "p",
-              text: "I ran a blind test: a fresh model, no prior context, given only the core system and a minimal PRD for a new agent. It produced a production-ready output spec that mapped every content type, applied the null rules, and marked uncertainty correctly. Better than the pass itself: the blind run surfaced edge cases my own audit had missed, which I brought back into the global rules. The system compounds — every spec it generates makes the next one better.",
+              text: "I ran a blind test: a fresh model, no prior context, given only the core system and a minimal PRD for a new agent. It produced a production-ready output spec that mapped every content type, applied the null rules, and marked uncertainty correctly. Better than the pass itself: the blind run surfaced edge cases my own audit had missed, which I brought back into the global rules. The system compounds: every spec it generates makes the next one better.",
             },
             {
               kind: "figure",
@@ -224,7 +224,7 @@ export const caseStudies: CaseStudy[] = [
               kind: "figure",
               label: "Self-Serve Toolkit",
               caption:
-                "Teams generate and maintain their own specs from the kit — no dependency on me.",
+                "Teams generate and maintain their own specs from the kit. No dependency on me.",
             },
             {
               kind: "subheading",
@@ -238,7 +238,7 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "labeledP",
               lead: "V2, designed but not yet built.",
-              text: "The output spec becomes the source of truth. Edit a brief and it propagates: the system prompt re-compiles with version control, the API validates payloads against generated typed schemas, and validated data maps into the frontend components — no per-feature parsers. It's the move from documenting the right output to enforcing it, where an output that doesn't match the spec can't render. The design is fully specified; building the compiler is the next phase.",
+              text: "The output spec becomes the source of truth. Edit a brief and it propagates: the system prompt re-compiles with version control, the API validates payloads against generated typed schemas, and validated data maps into the frontend components. No per-feature parsers. It's the move from documenting the right output to enforcing it, where an output that doesn't match the spec can't render. The design is fully specified; building the compiler is the next phase.",
             },
           ],
         },
