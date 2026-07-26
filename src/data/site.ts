@@ -6,7 +6,7 @@ export const person = {
 export const about = {
   paragraphs: [
     "I notice the system that's missing and go build it. Now: AI products, including one of my own. Previously at HubSpot, Vendr, Agent.ai.",
-    "Off hours: planting dahlias, online estate sales, and vampire novels I refuse to defend.",
+    "Off hours: planting dahlia's online estate sales and vampire novels.",
   ],
   firstSentence: "I notice the system that's missing and go build it.",
 };

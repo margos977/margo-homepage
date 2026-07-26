@@ -86,7 +86,7 @@ export function ConsoleNav() {
       </NavSection>
 
       <NavSection label="Status">
-        <p className="label-mono opacity-60">{status}</p>
+        <p className="opacity-80">{status}</p>
       </NavSection>
     </nav>
   );
