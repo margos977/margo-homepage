@@ -464,7 +464,7 @@ export const workHistory: WorkHistoryItem[] = [
     role: "Product Design Manager",
     timeframe: "2022–2023",
     description:
-      "Marina Map drove 18% of all 2023 upgrades; cut build time 78% (22 days to 5).",
+      "Marina Map drove 18% upgrades against a 10% goal; cut map delivery from 22 days to 5 (a 77% reduction).",
   },
   {
     org: "Vendr",
