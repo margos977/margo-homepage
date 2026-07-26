@@ -246,10 +246,10 @@ export const caseStudies: CaseStudy[] = [
     },
   },
   {
-    slug: "marina-map",
+     slug: "marina-map",
     title: "Marina Map",
     org: "The Wanderlust Group",
-    outcome: "Drove 18% of all 2023 upgrades; cut build time 78% (22 days to 5)",
+    outcome: "Drove 18% of all 2023 upgrades; cut build time 78% (22 days to 5).",
     role: "Product Design Manager",
     timeframe: "2022–2023",
     content: null,
@@ -258,16 +258,16 @@ export const caseStudies: CaseStudy[] = [
     slug: "design-practice-from-zero",
     title: "Design Practice from Zero",
     org: "Vendr",
-    outcome: "Built the design practice from zero through a $60M raise",
+    outcome: "Built the design practice from zero through a $60M raise.",
     role: "Lead Product Designer",
     timeframe: "2020–2022",
     content: null,
   },
   {
     slug: "databebe",
-    title: "Databébé",
+    title: "databébé",
     org: "Independent",
-    outcome: "Live B2C data-sync product, built solo, full stack, zero ad spend",
+    outcome: "Live B2C data-sync product, built solo, full stack.",
     role: "Founder",
     timeframe: "2026–PRESENT",
     content: null,
@@ -299,7 +299,7 @@ export const workHistory: WorkHistoryItem[] = [
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
     description:
-      "AI Output Design System: governs how generated content behaves under low confidence, stale data, and error states across 30+ products.",
+      "AI output system: governs what generated content contains and how it's structured, so the same content maps to the same structure on every agent, with consistent handling of low confidence, stale data, and errors across 24 agents.",
   },
   {
     org: "The Wanderlust Group",
@@ -320,7 +320,7 @@ export const workHistory: WorkHistoryItem[] = [
     role: "Product Designer",
     timeframe: "2015–2018",
     description:
-      "Core work across Developer, CRM, Social, and Import teams; opted into part-time design-systems work alongside it.",
+      "Core work across Developer, CRM, Social, and Import teams.",
   },
 ];
 
