@@ -188,7 +188,12 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "figure":
       return (
-        <Figure label={block.label} caption={block.caption} src={block.src} />
+        <Figure
+          label={block.label}
+          caption={block.caption}
+          src={block.src}
+          src2={block.src2}
+        />
       );
   }
 }
@@ -197,19 +202,24 @@ function Figure({
   label,
   caption,
   src,
+  src2,
 }: {
   label: string;
   caption?: string;
   src?: string;
+  src2?: string;
 }) {
   return (
     <figure className="mt-2">
       {src ? (
-        <img
-          src={src}
-          alt={label}
-          className="w-full border border-hairline"
-        />
+        src2 ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <img src={src} alt={label} className="w-full border border-hairline" />
+            <img src={src2} alt={label} className="w-full border border-hairline" />
+          </div>
+        ) : (
+          <img src={src} alt={label} className="w-full border border-hairline" />
+        )
       ) : (
         <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
           <span className="label-mono text-center opacity-40">

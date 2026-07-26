@@ -26,7 +26,7 @@ export type ContentBlock =
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
-  | { kind: "figure"; label: string; caption?: string; src?: string };
+  | { kind: "figure"; label: string; caption?: string; src?: string; src2?: string };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -89,7 +89,7 @@ export const caseStudies: CaseStudy[] = [
         },
         {
           label: "What I Built",
-          text: "A content system in three parts: a registry of content types and the structural primitives that present them, platform-wide behavioral rules every agent inherits, and a generator that turns a product spec into a reviewable output spec engineering can build from.",
+          text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a product spec into a reviewable output spec engineering can build from.",
         },
         {
           label: "How I Proved It",
@@ -278,6 +278,7 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Active Paper Marina Map",
+              src: "/images/case-studies/marina-map-whiteboard.png",
             },
           ],
         },
@@ -353,6 +354,8 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Customer-Facing List View vs. New Map View",
+              src: "/images/case-studies/marina-map-list-view.webp",
+              src2: "/images/case-studies/marina-map-new-map-view.webp",
             },
           ],
         },
@@ -378,6 +381,7 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Annotation: Yellow-Box Placeholders Becoming Slips",
+              src: "/images/case-studies/marina-map-annotation.webp",
             },
           ],
         },
