@@ -99,7 +99,7 @@ export const caseStudies: CaseStudy[] = [
       heroFigure: {
         label: "Layer Matrix",
         caption:
-          "The three layers of an AI output: visual, content, and reasoning. The middle one had no owner. That's the work.",
+          "The Missing Layer, owned by content architecture.",
         srcs: ["/images/case-studies/layer-matrix.png"],
       },
       sections: [
