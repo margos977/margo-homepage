@@ -151,6 +151,10 @@ function Block({ block }: { block: ContentBlock }) {
   switch (block.kind) {
     case "p":
       return <p className="leading-[1.6]">{block.text}</p>;
+    case "lead":
+      return (
+        <p className="text-xl font-medium leading-snug">{block.text}</p>
+      );
     case "labeledP":
       return (
         <p className="leading-[1.6]">

@@ -22,6 +22,7 @@ export type ListItem = { lead?: string; text: string };
 
 export type ContentBlock =
   | { kind: "p"; text: string }
+  | { kind: "lead"; text: string }
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
@@ -60,267 +61,184 @@ export const caseStudies: CaseStudy[] = [
     title: "Generative UI Content Schema",
     org: "Agent.ai",
     outcome:
-      "Validated a shared confidence, staleness, and error contract across 30+ products",
+      "One content system governing what 24 live agents show, how they mark uncertainty, and how they handle thin data",
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
     content: {
       headline:
         "Governing what two dozen AI agents say, not just how they look",
       intro: [
-        "When Agent.ai grew to 24 live premium agents, the interface stayed visually consistent because every team pulled from the same React design system. But the content inside those components drifted completely.",
-        "One agent displayed confidence as a percentage, another as a qualitative badge, and a third omitted uncertainty altogether. The visual layer had a clear owner, but the structural layer underneath (what an output contains, how it marks a guess, and how it handles thin data) had none. That decision fell to whichever engineer was shipping that agent's prompt.",
+        "When Agent.ai grew to 24 live premium agents, the interface stayed relatively consistent because every team pulled from the same design system. But the content inside those components drifted. One agent showed confidence as a percentage, another as a badge, a third left uncertainty off the output entirely. The visual layer had a clear owner. The layer underneath — what an output contains, how it marks a guess, what it does when data is thin — had none, so it fell to whichever engineer was shipping that agent's prompt.",
       ],
       contextNote:
-        'Visuals throughout this case study use a fictional fintech surface named "Aria" as a faithful reconstruction. Original Agent.ai artifacts became HubSpot IP following our acquisition. The underlying system governed 24 live production agents and was validated through blind testing.',
+        'Visuals throughout use a fictional fintech surface, "Aria," as a faithful reconstruction. The original Agent.ai artifacts became HubSpot IP after the 2026 acquisition. The system itself governed 24 live premium agents and was validated by blind test.',
       atAGlance: [
         {
           label: "Role",
-          text: "Product Designer / Systems Architect at Agent.ai. Scoped, authored, and validated the platform content architecture.",
+          text: "Lead Product Designer at Agent.ai. I scoped, built, and validated the content system across the platform.",
         },
         {
           label: "Scope",
-          text: "24 live premium AI agents across a unified product platform.",
+          text: "24 live premium agents.",
         },
         {
           label: "The Problem",
-          text: "High visual consistency, severe output content drift. Without a content architecture layer, engineers were forced to make product design decisions in code while shipping prompts.",
+          text: "Visual consistency was high, but output content drifted across every agent. No one owned the layer that governs it, so engineers were making product decisions in code while trying to ship.",
         },
         {
           label: "What I Built",
-          text: "A 3-part content governance system:",
-          items: [
-            "A Central Registry of content entities and structural primitives.",
-            "Platform-Wide Behavioral Rules inherited across all agent outputs.",
-            "A Spec Generator that compiles product specs into reviewable output specs.",
-          ],
+          text: "A content system in three parts: a registry of content types and the structural primitives that present them, platform-wide behavioral rules every agent inherits, and a generator that turns a product spec into a reviewable output spec engineering can build from.",
         },
         {
           label: "How I Proved It",
-          text: "A blind validation run using an isolated model with zero context, supplied only with the core system and a bare-bones feature PRD.",
+          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD, produced a conforming output spec and surfaced edge cases that were brought into the platform rules.",
         },
       ],
       heroFigure: {
         label: "Layer Matrix",
         caption:
-          "Mapping the 3 layers of an AI output: Prompt/Reasoning (Engineers) → Content Architecture (System Owner) → Visual Tokens (Design System). The middle layer had no owner: that was the work.",
+          "The three layers of an AI output: visual, content, and reasoning. The middle one had no owner — that's the work.",
       },
       sections: [
         {
-          heading: "The Problem: Design Decisions Hidden in Code",
+          heading: "Problem",
           blocks: [
             {
-              kind: "p",
-              text: "Engineering teams were spending weeks wrestling with inconsistent agent outputs across multi-agent workflows. But the specs they received stopped at high-level business goals and visual mockups.",
+              kind: "lead",
+              text: "Teams were losing weeks to inconsistent outputs, and because no one owned the content layer, engineers were solving design problems in code while shipping prompts.",
             },
             {
               kind: "p",
-              text: "When a live LLM payload returned a missing field, an unexpected array length, or an ambiguous label, backend engineers had to make UI and content calls on the fly. It wasn't a prompt tuning problem or a CSS issue: the platform lacked a content architecture, forcing edge cases to be solved ad hoc in backend code rather than intentionally in design.",
+              text: "The engineers were doing real work building multi-agent flows, but the specs they got stopped at business goals and mockups. When a payload came back with a missing field, an odd array length, or an ambiguous label, they had to decide on the spot how to render it — what to show, how to mark it, whether to hide the section or flag it. It wasn't a prompt problem or a styling problem. The platform had no content architecture, so edge cases got answered ad hoc in the backend instead of on purpose in design.",
             },
             {
               kind: "figure",
               label: "Agent Output Drift",
               caption:
-                "Before & After: The same underlying payload rendered by three different agents (prose, invented markup, and a dense table) versus all three governed by one unified content system.",
+                "Same data, three agents — prose, invented markup, a dense table — then the same three under one system.",
             },
           ],
         },
         {
-          heading: "Design Decisions: Building the Missing Layer",
+          heading: "Design decisions: building the missing layer",
           blocks: [
             {
-              kind: "p",
-              text: "Prompt engineering governs backend reasoning; design tokens govern visual styling. Neither governs structural content. I designed the architecture between them: a content system built in three parts.",
-            },
-            { kind: "subheading", text: "1. A Central Registry of Content Types" },
-            {
-              kind: "p",
-              text: "The shared dictionary every agent draws from. It settles how each piece of information is structured: a given content type maps directly to a specified structural primitive, every single time.",
+              kind: "lead",
+              text: "Prompt engineering and design tokens each governed a layer; neither governed what the output contained, so I built the layer between them — a content system in three parts.",
             },
             {
-              kind: "list",
-              items: [
-                {
-                  text: "A confidence score is never a percentage on one agent and a badge on another.",
-                },
-                {
-                  text: "The model cannot invent new layout shapes or reach for unvetted components.",
-                },
-                {
-                  text: "Each entity defines required fields, optional metadata, and explicit null fallbacks (for example, if a primary metric is missing, the system gracefully falls back to a qualitative summary rather than rendering an empty card).",
-                },
-              ],
+              kind: "labeledP",
+              lead: "A central registry of content types.",
+              text: "The shared dictionary every agent draws from. Its main job is to settle how each kind of content is presented: a given kind of content maps to a specified type and the structural primitive that presents it, the same way every time — so a confidence score isn't a percentage on one agent and a badge on another, and the model can't invent a new shape or reach for the wrong one. Each type also defines its required pieces, its optional metadata, and what it falls back to when data is missing — if a primary metric isn't there, the output falls back to a less precise value rather than shipping an empty string.",
             },
             {
               kind: "figure",
-              label: "Inference Marker Primitive",
+              label: "Inference Marker",
               caption:
-                "Facts stay plain; only the model's generated judgment carries an explicit visual inference token.",
-            },
-            { kind: "subheading", text: "2. Inherited Platform Behavioral Rules" },
-            {
-              kind: "p",
-              text: "Uncertainty handling, null states, elastic section folding, and copy length caps live in a single platform-wide rule set. Every agent inherits these rules by default:",
+                "Facts stay plain; only the model's own judgment is marked as inferred.",
             },
             {
-              kind: "list",
-              items: [
-                {
-                  lead: "Inference:",
-                  text: "Every output marks model-generated assumptions identically.",
-                },
-                {
-                  lead: "Null States:",
-                  text: "Every empty state explains itself or collapses cleanly without breaking DOM layout trees.",
-                },
-                {
-                  lead: "Confidence:",
-                  text: "Every predictive figure carries certainty metrics using standard thresholds.",
-                },
-              ],
-            },
-            {
-              kind: "p",
-              text: "A new agent starts completely compliant rather than starting from scratch.",
+              kind: "labeledP",
+              lead: "Behavioral rules every agent inherits.",
+              text: "Uncertainty handling, null states, and copy limits live in one platform-wide rule set instead of being re-specified per agent. Every output marks inference the same way, every empty state explains itself the same way, every predictive figure carries its confidence the same way. A new agent starts compliant instead of starting from scratch.",
             },
             {
               kind: "figure",
-              label: "Null-State Triptych",
-              caption:
-                "One missing payload field, three deterministic behaviors: omit section, explain missing context, or flag for review.",
+              label: "Null-States Triptych",
+              caption: "One missing field, three correct behaviors — omit, explain, or flag.",
             },
             {
-              kind: "subheading",
-              text: "3. A Spec Generator for Design-Engineering Handoff",
-            },
-            {
-              kind: "p",
-              text: "To bridge product intent and code execution, I designed a generator workflow. It evaluates a simplified PRD against the Central Registry and inherited rules, then compiles a designer-reviewable output spec.",
-            },
-            {
-              kind: "p",
-              text: "It maps required content entities, identifies edge cases, and flags ambiguous calls for human review. Engineering builds from this spec: structural schemas, fallbacks, and content limits are settled in design before writing rendering logic.",
+              kind: "labeledP",
+              lead: "A generator that turns a spec into a reviewable output spec.",
+              text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec — the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering builds from that: structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
             },
             {
               kind: "figure",
               label: "Pipeline Diagram",
               caption:
-                "A product PRD compiles against the Content System into an output spec that engineering builds from.",
+                "A product spec compiles against the system into a reviewable output spec engineering builds from.",
             },
           ],
         },
         {
-          heading: "What Didn't Work: Iteration & Edge-Case Discovery",
+          heading: "What didn't work",
           blocks: [
             {
-              kind: "p",
-              text: "Early iterations failed to stop agent drift, and each failure revealed a critical constraint:",
-            },
-            {
-              kind: "list",
-              items: [
-                {
-                  lead: "Taxonomy was too granular:",
-                  text: "I initially created separate types for PersonCard, ContactCard, and UserProfile. The redundant overlapping schemas confused the model during generation. I consolidated them into a single core Person entity with optional metadata flags and established a strict rule against duplicate entities.",
-                },
-                {
-                  lead: "Input specs were too long:",
-                  text: "I originally assumed giving the generator extensive background prose would improve output quality. Instead, excess text introduced noise, causing the model to invent unnecessary structures. Stripping input specs down to essential goals, inputs, and edge-case boundaries produced significantly cleaner outputs.",
-                },
-                {
-                  lead: "Validation was initially too soft:",
-                  text: "Reviewing early pilot runs myself created a bias because I already knew what the output should look like, making it easy to miss subtle edge-case gaps. Real validation required removing human hand-holding entirely.",
-                },
-              ],
-            },
-            {
-              kind: "figure",
-              label: "Spec Simplification Before/After",
-              caption:
-                "Comparing an over-engineered 5-page input brief against the stripped-down, goal-based PRD that yielded higher schema compliance.",
-            },
-          ],
-        },
-        {
-          heading: "Validation: Proving Resilience via Isolated Blind Testing",
-          blocks: [
-            {
-              kind: "p",
-              text: "A system's resilience isn't proven when its author operates it: it's proven when an isolated model executes it without human intervention.",
-            },
-            {
-              kind: "p",
-              text: "To validate the architecture, I ran a blind test: I supplied a fresh model (zero conversation history) with only the core system files and a bare-bones feature PRD for an unreleased agent.",
+              kind: "lead",
+              text: "The first versions didn't stop drift, and each failure taught the rule that fixed it.",
             },
             {
               kind: "labeledP",
-              lead: "Results:",
-              text: "The model correctly mapped all entities, applied global null rules, and structured uncertainty markers accurately on the first pass.",
+              lead: "The taxonomy was too granular.",
+              text: "I'd made separate types for a person, a contact, and a user profile — nearly the same structure three times — and the redundancy confused the model during generation more than it helped. I consolidated them into a single Person type with optional flags and wrote a rule against duplicate types.",
             },
             {
               kind: "labeledP",
-              lead: "Edge-Case Discovery:",
-              text: "The blind run surfaced two unhandled edge cases in array truncation. Instead of patching them in code, I promoted those rules back into the global registry library, making every future agent stronger.",
+              lead: "The input specs were too long.",
+              text: "I'd assumed more background would produce a better output spec, but the extra prose added noise and pushed the model to invent structures that weren't there. Stripping the input to essentials — goals, inputs, and edge-case boundaries — produced cleaner specs. The system reasons better from goals than from prescriptions, so the input got simpler, not richer.",
+            },
+            {
+              kind: "labeledP",
+              lead: "The validation was too soft.",
+              text: "I was reviewing the pilot runs myself, and because I already knew what each output should look like, I kept reading right past edge cases that were only half-defined. It wasn't until I handed the system to a model with no context that those gaps actually showed up.",
             },
             {
               kind: "figure",
-              label: "Blind Validation Audit Log",
+              label: "Spec Before/After",
               caption:
-                "Side-by-side comparison of the model's generated output spec against target production standards during the blind run.",
+                "The over-done early spec vs. the stripped-down version that produced cleaner output.",
             },
           ],
         },
         {
-          heading: "What's Next: Self-Serve Governance & The V2 Vision",
+          heading: "Validation: proving it holds without me",
           blocks: [
             {
-              kind: "p",
-              text: "Content systems often decay after the founding designer leaves. To ensure longevity, I packaged this system into a self-serve toolkit that enables product teams to generate, review, and maintain their own agent content briefs independently.",
+              kind: "lead",
+              text: "The real test isn't whether the system works when I run it — it's whether it holds when someone else does, without me in the loop.",
             },
             {
               kind: "p",
-              text: "This architecture now forms the foundation of my systems design practice, helping product organizations establish structural output governance for generative AI features.",
+              text: "I ran a blind test: a fresh model, no prior context, given only the core system and a minimal PRD for a new agent. It produced a production-ready output spec that mapped every content type, applied the null rules, and marked uncertainty correctly. Better than the pass itself: the blind run surfaced edge cases my own audit had missed, which I brought back into the global rules. The system compounds — every spec it generates makes the next one better.",
             },
             {
               kind: "figure",
-              label: "Self-Serve Toolkit Overview",
+              label: "Blind-Run Comparison",
               caption:
-                "Overview of the self-serve content governance kit, showing the generator workflow and reusable entity library.",
+                "A fresh model, given only the system and a new spec, produced a conforming output spec with no steering.",
+            },
+          ],
+        },
+        {
+          heading: "What's next: self-serve governance",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Content systems usually die when their builder leaves, so I packaged this one to outlast me.",
+            },
+            {
+              kind: "p",
+              text: "Teams can maintain their own agent content specs from the registry, the inherited rules, and the generator, without me in the loop. That kit is now the core of my consulting practice, where I help product organizations build the same output governance for their own AI features. Since it runs on documented types, inherited rules, and the generator rather than my personal review, teams keep shipping consistent specs long after the engagement ends.",
+            },
+            {
+              kind: "figure",
+              label: "Self-Serve Toolkit",
+              caption:
+                "Teams generate and maintain their own specs from the kit — no dependency on me.",
             },
             {
               kind: "subheading",
-              text: "The V2 Vision: From Documented Specs to Automated Enforcement",
+              text: "The V2 vision: from documented specs to enforcement",
             },
             {
               kind: "labeledP",
-              lead: "V1 Delivered:",
-              text: "A human-reviewed, structured spec that engineers translate into backend schemas and frontend components.",
+              lead: "V1, shipped.",
+              text: "A human-reviewed output spec that engineering still translates into schemas and components by hand.",
             },
             {
               kind: "labeledP",
-              lead: "V2 Pipeline:",
-              text: "The output spec becomes the automated source of truth. Editing a feature brief automatically compiles and syncs across three layers:",
-            },
-            {
-              kind: "list",
-              items: [
-                {
-                  lead: "System Prompts:",
-                  text: "Re-compiles system prompt instructions with git-backed version control.",
-                },
-                {
-                  lead: "API Contracts:",
-                  text: "Generates Pydantic models that validate LLM payloads at the API layer, blocking malformed data before it reaches client code.",
-                },
-                {
-                  lead: "UI Bindings:",
-                  text: "Maps validated payloads directly into React design system component props without custom JSON parsers.",
-                },
-              ],
-            },
-            {
-              kind: "labeledP",
-              lead: "Bottom Line:",
-              text: "The goal isn't just documenting rules: it's building an architecture where an invalid AI output is structurally impossible to render.",
+              lead: "V2, designed but not yet built.",
+              text: "The output spec becomes the source of truth. Edit a brief and it propagates: the system prompt re-compiles with version control, the API validates payloads against generated typed schemas, and validated data maps into the frontend components — no per-feature parsers. It's the move from documenting the right output to enforcing it, where an output that doesn't match the spec can't render. The design is fully specified; building the compiler is the next phase.",
             },
           ],
         },
