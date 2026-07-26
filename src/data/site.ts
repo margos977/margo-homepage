@@ -26,7 +26,7 @@ export type ContentBlock =
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
-  | { kind: "figure"; label: string; caption: string };
+  | { kind: "figure"; label: string; caption?: string };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -37,10 +37,10 @@ export type CaseStudySection = {
 
 export type CaseStudyContent = {
   headline: string;
-  intro: string[];
-  contextNote: string;
-  atAGlance: AtAGlanceItem[];
-  heroFigure: { label: string; caption: string };
+  intro?: string[];
+  contextNote?: string;
+  atAGlance?: AtAGlanceItem[];
+  heroFigure?: { label: string; caption?: string };
   sections: CaseStudySection[];
 };
 
@@ -246,13 +246,171 @@ export const caseStudies: CaseStudy[] = [
     },
   },
   {
-     slug: "marina-map",
+    slug: "marina-map",
     title: "Marina Map",
     org: "The Wanderlust Group",
-    outcome: "Drove 18% of all 2023 upgrades; cut build time 78% (22 days to 5).",
-    role: "Product Design Manager",
+    outcome:
+      "18% upgrades against a 10% goal; map delivery cut from 22 days to 5 across 208 marinas.",
+    role: "Lead Product Designer",
     timeframe: "2022–2023",
-    content: null,
+    content: {
+      headline:
+        "An interactive digital marina map that replaced the daily paper binder, and became Dockwa's most successful feature.",
+      sections: [
+        {
+          heading: "At a glance",
+          blocks: [
+            {
+              kind: "lead",
+              text: "208 marinas, 260+ maps published, 18% upgrades against a 10% goal, map delivery cut from 22 days to 5.",
+            },
+            {
+              kind: "p",
+              text: "Dockwa is a marina management platform, finding efficiencies for marina operators and improving the experience for boaters on the water. Marina Map layered Dockwa's existing reservation data onto a live, interactive picture of the marina, so dockmasters could stop running operations off a hand-edited binder.",
+            },
+            {
+              kind: "labeledP",
+              lead: "Team.",
+              text: "I led design as Lead Product Designer, working with a second product designer, a PM, four engineers and a tech lead, and an external agency. Stakeholders ran up to the CEO, GTM leadership, and the VPs of Product and Engineering.",
+            },
+            {
+              kind: "figure",
+              label: "Active Paper Marina Map",
+            },
+          ],
+        },
+        {
+          heading: "Problem",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Marinas were running daily operations off a paper binder, by hand, with no history and no way to maximize occupancy.",
+            },
+            {
+              kind: "p",
+              text: "Marinas use a marina map to see which slips are open and manage the day to day. The industry standard is physical: a large in-office whiteboard, or more often a binder with the map printed for each day of the year, filled in and edited by hand every morning. It's slow, it's error-prone, and it makes true occupancy maximization impossible.",
+            },
+          ],
+        },
+        {
+          heading: "Goals",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Move marinas off paper, and prove the feature was worth paying for.",
+            },
+            {
+              kind: "p",
+              text: "Three things we wanted to move: increase nights booked in Dockwa, the company's North Star (customers were managing some reservations by hand instead of importing them). Drive upgrades and purchases, since this was a paid add-on. And cut the time dockmasters spent maintaining the map, which averaged around two hours a day.",
+            },
+          ],
+        },
+        {
+          heading: "Discovery",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Ten marinas, chosen for complexity, told us what the map actually had to do.",
+            },
+            {
+              kind: "p",
+              text: "We deliberately screened for range and difficulty: small to large (from under 50 slips to over 200), across New England, Florida, and California, marinas holding both long-term contracts and transient reservations, and multiple storage types (slips, dry stack, moorings). Ten interviews later, the pattern was clear:",
+            },
+            {
+              kind: "p",
+              text: "Every marina had its own dense system of detail and color coding: boat type, daily arrivals and departures, unpaid balances. Boat length and depth, slip size, and power pedestal locations were universal. Dockmasters were spending an hour before and after every shift correcting the map and copying reservations over from the digital system by hand. Because edits erased the old state, there was no history of changes or cancellations. And the person holding the binder kept becoming the bottleneck for the whole operation. What marinas wanted from the map, in order: maximize dock usage first, improve operations and service second.",
+            },
+          ],
+        },
+        {
+          heading: "Solution",
+          blocks: [
+            {
+              kind: "lead",
+              text: "An interactive picture of the marina, with Dockwa's live reservation data layered on top.",
+            },
+            {
+              kind: "p",
+              text: "Layering the existing reservation and assignment data onto a new view turned out to be quick. The hard part (the real design problem) was automating map creation and teaching the reservation data where to sit on the map. Working with engineering and my PM, and after two Crazy 8 sessions with the pod, three pieces emerged:",
+            },
+            {
+              kind: "labeledP",
+              lead: "Map creation.",
+              text: "In-house designers built standardized marina maps in Figma from the customer's existing map and Google satellite imagery, using a component library of stylized dock elements and auto-layout, then exported them as SVGs.",
+            },
+            {
+              kind: "labeledP",
+              lead: "Annotation.",
+              text: "A CSM imported the SVG into a new Settings page and dragged the marina's defined slips onto the image in the right spots.",
+            },
+            {
+              kind: "labeledP",
+              lead: "Customer-facing map view.",
+              text: "Once the CSM published, the customer got a new interactive map inside their Assignments tool.",
+            },
+            {
+              kind: "figure",
+              label: "Customer-Facing List View vs. New Map View",
+            },
+          ],
+        },
+        {
+          heading: "Iterations",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Real usage broke the annotation step, so I automated it.",
+            },
+            {
+              kind: "p",
+              text: "For the MVP we stripped it back, cutting self-service to ship. Two things surfaced fast. Marinas wouldn't adopt the map without their own color coding, so we added up to eight custom codes that applied automatically to each slip. And annotation time climbed from four days to sixteen as requests and marina sizes grew: the more slips, the longer it took.",
+            },
+            {
+              kind: "p",
+              text: "That's the piece I'm proudest of. Instead of having CSMs create and place every slip by hand, I used Figma auto-layout to drop a bright yellow box everywhere a slip should go during map creation. On upload, the tool recognized each yellow box and swapped it for a real boat slip, so the CSM only had to match each slip to its name, not build and position it. Annotation time dropped sharply.",
+            },
+            {
+              kind: "p",
+              text: "Beyond docks, marinas kept asking for other layouts (dry stack, parking-lot storage, mooring fields), which we kept iterating on.",
+            },
+            {
+              kind: "figure",
+              label: "Annotation: Yellow-Box Placeholders Becoming Slips",
+            },
+          ],
+        },
+        {
+          heading: "Results",
+          blocks: [
+            {
+              kind: "lead",
+              text: "As of November 2023, Marina Map was the most successful feature at Dockwa.",
+            },
+            {
+              kind: "p",
+              text: "We rolled it out to 208 marinas with over 260 maps published, and it beat every target we set.",
+            },
+            {
+              kind: "p",
+              text: "Upgrades and purchases came in over 18% against a 10% goal: paying customers who upgraded their tier or bought Dockwa because of Marina Map. On time savings, more than 55 marinas dropped their physical maps entirely, saving those users over ten hours a week. Nights booked rose too; we couldn't tie the increase directly to the map, but Dockwa saw a marked lift as marinas moved onto the feature.",
+            },
+            {
+              kind: "p",
+              text: "And the process itself got dramatically faster. Over eight months I cut the “in design” phase of map creation from 22 days to 5 (a 77% reduction) through the annotation automation, streamlined data collection from marinas, and the Figma component system, which got the tool into customers' hands far sooner.",
+            },
+          ],
+        },
+        {
+          heading: "What's next",
+          blocks: [
+            {
+              kind: "p",
+              text: "Self-service map creation is the next step, putting map building fully in the customer's hands, editable end to end, with Dockwa's other tools integrated into the map view. It's designed; it's waiting on resourcing.",
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "design-practice-from-zero",

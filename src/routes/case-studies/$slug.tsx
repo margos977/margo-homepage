@@ -77,22 +77,28 @@ function CaseStudyBody({ caseStudy }: { caseStudy: CaseStudy }) {
     <>
       <p className="mt-4 max-w-xl text-xl leading-snug">{content.headline}</p>
 
-      <div className="mt-8 flex flex-col gap-4">
-        {content.intro.map((paragraph) => (
-          <p key={paragraph} className="leading-[1.6]">
-            {paragraph}
-          </p>
-        ))}
-      </div>
+      {content.intro && (
+        <div className="mt-8 flex flex-col gap-4">
+          {content.intro.map((paragraph) => (
+            <p key={paragraph} className="leading-[1.6]">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
 
-      <div className="mt-8 border border-hairline p-6">
-        <p className="label-mono mb-3 opacity-60">Context Note</p>
-        <p className="leading-[1.6] opacity-80">{content.contextNote}</p>
-      </div>
+      {content.contextNote && (
+        <div className="mt-8 border border-hairline p-6">
+          <p className="label-mono mb-3 opacity-60">Context Note</p>
+          <p className="leading-[1.6] opacity-80">{content.contextNote}</p>
+        </div>
+      )}
 
-      <AtAGlance items={content.atAGlance} />
+      {content.atAGlance && <AtAGlance items={content.atAGlance} />}
 
-      <Figure label={content.heroFigure.label} caption={content.heroFigure.caption} />
+      {content.heroFigure && (
+        <Figure label={content.heroFigure.label} caption={content.heroFigure.caption} />
+      )}
 
       <div className="mt-16 flex flex-col gap-16">
         {content.sections.map((section) => (
@@ -179,7 +185,7 @@ function Block({ block }: { block: ContentBlock }) {
   }
 }
 
-function Figure({ label, caption }: { label: string; caption: string }) {
+function Figure({ label, caption }: { label: string; caption?: string }) {
   return (
     <figure className="mt-2">
       <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
@@ -187,9 +193,11 @@ function Figure({ label, caption }: { label: string; caption: string }) {
           [ IMAGE PLACEHOLDER: {label.toUpperCase()} ]
         </span>
       </div>
-      <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">
-        {caption}
-      </figcaption>
+      {caption && (
+        <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 }
