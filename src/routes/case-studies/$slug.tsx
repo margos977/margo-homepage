@@ -26,7 +26,9 @@ function CaseStudyDetail() {
   return (
     <article className="max-w-2xl">
       <Link
-        to="/case-studies"
+        to="/"
+        hash="case-studies"
+        hashScrollIntoView={{ behavior: "smooth" }}
         className="label-mono opacity-60 transition-opacity hover:opacity-100"
       >
         ← / CASE STUDIES
