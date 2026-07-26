@@ -204,12 +204,6 @@ export const caseStudies: CaseStudy[] = [
               kind: "p",
               text: "I ran a blind test: a fresh model, no prior context, given only the core system and a minimal PRD for a new agent. It produced a production-ready output spec that mapped every content type, applied the null rules, and marked uncertainty correctly. Better than the pass itself: the blind run surfaced edge cases my own audit had missed, which I brought back into the global rules. The system compounds: every spec it generates makes the next one better.",
             },
-            {
-              kind: "figure",
-              label: "Blind-Run Comparison",
-              caption:
-                "A fresh model, given only the system and a new spec, produced a conforming output spec with no steering.",
-            },
           ],
         },
         {
@@ -222,12 +216,6 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "p",
               text: "Teams can maintain their own agent content specs from the registry, the inherited rules, and the generator, without me in the loop. That kit is now the core of my consulting practice, where I help product organizations build the same output governance for their own AI features. Since it runs on documented types, inherited rules, and the generator rather than my personal review, teams keep shipping consistent specs long after the engagement ends.",
-            },
-            {
-              kind: "figure",
-              label: "Self-Serve Toolkit",
-              caption:
-                "Teams generate and maintain their own specs from the kit. No dependency on me.",
             },
             {
               kind: "subheading",
