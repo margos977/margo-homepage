@@ -102,7 +102,7 @@ function CaseStudyBody({ caseStudy }: { caseStudy: CaseStudy }) {
         <Figure
           label={content.heroFigure.label}
           caption={content.heroFigure.caption}
-          src={content.heroFigure.src}
+          srcs={content.heroFigure.srcs}
         />
       )}
 
@@ -188,12 +188,7 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "figure":
       return (
-        <Figure
-          label={block.label}
-          caption={block.caption}
-          src={block.src}
-          src2={block.src2}
-        />
+        <Figure label={block.label} caption={block.caption} srcs={block.srcs} />
       );
   }
 }
@@ -201,25 +196,34 @@ function Block({ block }: { block: ContentBlock }) {
 function Figure({
   label,
   caption,
-  src,
-  src2,
+  srcs,
 }: {
   label: string;
   caption?: string;
-  src?: string;
-  src2?: string;
+  srcs?: string[];
 }) {
   return (
-    <figure className="mt-2">
-      {src ? (
-        src2 ? (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <img src={src} alt={label} className="w-full border border-hairline" />
-            <img src={src2} alt={label} className="w-full border border-hairline" />
-          </div>
-        ) : (
-          <img src={src} alt={label} className="w-full border border-hairline" />
-        )
+    <figure className="mt-2 sm:-mx-10 sm:w-[calc(100%+5rem)] lg:-mx-16 lg:w-[calc(100%+8rem)]">
+      {srcs && srcs.length > 0 ? (
+        <div
+          className={
+            srcs.length === 1
+              ? ""
+              : "grid grid-cols-1 gap-3 sm:grid-cols-2"
+          }
+        >
+          {srcs.map((src) => (
+            <a
+              key={src}
+              href={src}
+              target="_blank"
+              rel="noreferrer"
+              className="block cursor-zoom-in"
+            >
+              <img src={src} alt={label} className="w-full border border-hairline" />
+            </a>
+          ))}
+        </div>
       ) : (
         <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
           <span className="label-mono text-center opacity-40">

@@ -26,7 +26,7 @@ export type ContentBlock =
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
-  | { kind: "figure"; label: string; caption?: string; src?: string; src2?: string };
+  | { kind: "figure"; label: string; caption?: string; srcs?: string[] };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -40,7 +40,7 @@ export type CaseStudyContent = {
   intro?: string[];
   contextNote?: string;
   atAGlance?: AtAGlanceItem[];
-  heroFigure?: { label: string; caption?: string; src?: string };
+  heroFigure?: { label: string; caption?: string; srcs?: string[] };
   sections: CaseStudySection[];
 };
 
@@ -278,7 +278,7 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Active Paper Marina Map",
-              src: "/images/case-studies/marina-map-whiteboard.png",
+              srcs: ["/images/case-studies/marina-map-whiteboard.png"],
             },
           ],
         },
@@ -353,9 +353,16 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "figure",
+              label: "Annotation: Yellow-Box Placeholders Becoming Slips",
+              srcs: ["/images/case-studies/marina-map-annotation.webp"],
+            },
+            {
+              kind: "figure",
               label: "Customer-Facing List View vs. New Map View",
-              src: "/images/case-studies/marina-map-list-view.webp",
-              src2: "/images/case-studies/marina-map-new-map-view.webp",
+              srcs: [
+                "/images/case-studies/marina-map-list-view.webp",
+                "/images/case-studies/marina-map-new-map-view.webp",
+              ],
             },
           ],
         },
@@ -377,11 +384,6 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "p",
               text: "Beyond docks, marinas kept asking for other layouts (dry stack, parking-lot storage, mooring fields), which we kept iterating on.",
-            },
-            {
-              kind: "figure",
-              label: "Annotation: Yellow-Box Placeholders Becoming Slips",
-              src: "/images/case-studies/marina-map-annotation.webp",
             },
           ],
         },
@@ -412,6 +414,19 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "p",
               text: "Self-service map creation is the next step, putting map building fully in the customer's hands, editable end to end, with Dockwa's other tools integrated into the map view. It's designed; it's waiting on resourcing.",
+            },
+            {
+              kind: "figure",
+              label: "Self-Service Map Builder",
+              caption:
+                "The self-service flow: set location, add docks, configure slips, then place power and fuel, all without a CSM.",
+              srcs: [
+                "/images/case-studies/marina-map-selfservice-location.webp",
+                "/images/case-studies/marina-map-selfservice-docks.webp",
+                "/images/case-studies/marina-map-selfservice-dockbuilder.webp",
+                "/images/case-studies/marina-map-selfservice-power.webp",
+                "/images/case-studies/marina-map-selfservice-fuel.webp",
+              ],
             },
           ],
         },
