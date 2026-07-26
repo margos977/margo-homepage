@@ -34,7 +34,7 @@ export function ConsoleNav() {
   return (
     <nav className="flex w-full shrink-0 flex-col gap-10 px-6 py-10 md:sticky md:top-0 md:h-screen md:w-[280px] md:overflow-y-auto md:px-10">
       <NavSection label="Index" showDivider>
-        <ul className="flex flex-col gap-2">
+        <ul className="-mx-1.5 flex flex-col gap-2">
           {indexNav.map((item) => {
             const href = isHome ? item.href : `/${item.href}`;
             const active = isHome && activeHash === item.href;
@@ -53,8 +53,8 @@ export function ConsoleNav() {
                   }}
                   className={
                     active
-                      ? "marker-highlight inline-block leading-none"
-                      : "inline-block leading-none text-ink hover:underline"
+                      ? "marker-highlight inline-block px-1.5 leading-none"
+                      : "inline-block px-1.5 leading-none text-ink hover:underline"
                   }
                 >
                   {item.label}

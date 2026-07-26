@@ -63,7 +63,6 @@
   .marker-highlight {
     background-color: var(--color-highlight);
     color: var(--color-ink);
-    padding: 0 6px;
   }
 
   .hairline {
