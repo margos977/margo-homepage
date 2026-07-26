@@ -1,6 +1,7 @@
 node_modules
 .output
 .tanstack
+.netlify
 dist
 src/routeTree.gen.ts
 .DS_Store
