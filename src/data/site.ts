@@ -158,7 +158,7 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "labeledP",
-              lead: "A generator that turns a PRD into a reviewable output spec.",
+              lead: "The system turns the PRD into an output spec engineering builds from.",
               text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec: the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering then builds from that. The structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
             },
             {
