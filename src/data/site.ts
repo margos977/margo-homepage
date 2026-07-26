@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
     org: "The Wanderlust Group",
     outcome:
       "18% upgrades against a 10% goal; map delivery cut from 22 days to 5 across 208 marinas.",
-    role: "Lead Product Designer",
+    role: "Product Design Manager",
     timeframe: "2022–2023",
     content: {
       headline:
@@ -271,7 +271,7 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "labeledP",
               lead: "Team.",
-              text: "I led design as Lead Product Designer, working with a second product designer, a PM, four engineers and a tech lead, and an external agency. Stakeholders ran up to the CEO, GTM leadership, and the VPs of Product and Engineering.",
+              text: "I led design as Product Design Manager, working with a second product designer, a PM, four engineers and a tech lead, and an external agency. Stakeholders ran up to the CEO, GTM leadership, and the VPs of Product and Engineering.",
             },
             {
               kind: "figure",
@@ -444,7 +444,7 @@ export const workHistory: WorkHistoryItem[] = [
     org: "Databébé",
     role: "Founder",
     timeframe: "2026–PRESENT",
-    description: "B2C data-sync product, built solo, full stack, zero ad spend.",
+    description: "B2C data-sync product, built solo, full stack.",
   },
   {
     org: "Margo Louise LLC",
