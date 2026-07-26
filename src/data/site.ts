@@ -133,5 +133,5 @@ export const status = "Taking clients · Boston, MA";
 export const indexNav: Array<{ label: string; href: string }> = [
   { label: "About", href: "#about" },
   { label: "Case Studies", href: "#case-studies" },
-  { label: "Work History", href: "#work-history" },
+  { label: "Timeline", href: "#timeline" },
 ];

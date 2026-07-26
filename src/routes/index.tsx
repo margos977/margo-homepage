@@ -57,7 +57,7 @@ function Home() {
         </div>
       </Section>
 
-      <Section id="work-history" label="Work History" className="mt-16">
+      <Section id="timeline" label="Timeline" className="mt-16">
         <WorkTable items={workHistory} />
       </Section>
     </div>
