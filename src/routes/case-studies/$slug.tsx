@@ -203,7 +203,7 @@ function Figure({
   srcs?: string[];
 }) {
   return (
-    <figure className="mt-2 sm:-mx-10 sm:w-[calc(100%+5rem)] lg:-mx-16 lg:w-[calc(100%+8rem)]">
+    <figure className="mt-2">
       {srcs && srcs.length > 0 ? (
         <div
           className={
@@ -220,7 +220,7 @@ function Figure({
               rel="noreferrer"
               className="block cursor-zoom-in"
             >
-              <img src={src} alt={label} className="w-full border border-hairline" />
+              <img src={src} alt={label} className="w-full" />
             </a>
           ))}
         </div>
