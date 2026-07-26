@@ -31,7 +31,9 @@ function Home() {
 
       <Section id="case-studies" label="Case Studies" className="mt-16">
         <div>
-          {caseStudies.map((cs) => (
+          {caseStudies
+            .filter((cs) => !cs.hidden)
+            .map((cs) => (
             <Link
               key={cs.slug}
               to="/case-studies/$slug"
@@ -57,7 +59,7 @@ function Home() {
         </div>
       </Section>
 
-      <Section id="timeline" label="Timeline" className="mt-16">
+      <Section id="timeline" label="Timeline" className="mt-16 -mb-6">
         <WorkTable items={workHistory} />
       </Section>
     </div>

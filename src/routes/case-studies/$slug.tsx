@@ -11,7 +11,7 @@ import { NotFound } from "@/components/not-found";
 export const Route = createFileRoute("/case-studies/$slug")({
   loader: ({ params }) => {
     const caseStudy = caseStudies.find((cs) => cs.slug === params.slug);
-    if (!caseStudy) throw notFound();
+    if (!caseStudy || caseStudy.hidden) throw notFound();
     return caseStudy;
   },
   component: CaseStudyDetail,
@@ -99,7 +99,11 @@ function CaseStudyBody({ caseStudy }: { caseStudy: CaseStudy }) {
       {content.atAGlance && <AtAGlance items={content.atAGlance} />}
 
       {content.heroFigure && (
-        <Figure label={content.heroFigure.label} caption={content.heroFigure.caption} />
+        <Figure
+          label={content.heroFigure.label}
+          caption={content.heroFigure.caption}
+          src={content.heroFigure.src}
+        />
       )}
 
       <div className="mt-16 flex flex-col gap-16">
@@ -183,18 +187,36 @@ function Block({ block }: { block: ContentBlock }) {
         </ul>
       );
     case "figure":
-      return <Figure label={block.label} caption={block.caption} />;
+      return (
+        <Figure label={block.label} caption={block.caption} src={block.src} />
+      );
   }
 }
 
-function Figure({ label, caption }: { label: string; caption?: string }) {
+function Figure({
+  label,
+  caption,
+  src,
+}: {
+  label: string;
+  caption?: string;
+  src?: string;
+}) {
   return (
     <figure className="mt-2">
-      <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
-        <span className="label-mono text-center opacity-40">
-          [ IMAGE PLACEHOLDER: {label.toUpperCase()} ]
-        </span>
-      </div>
+      {src ? (
+        <img
+          src={src}
+          alt={label}
+          className="w-full border border-hairline"
+        />
+      ) : (
+        <div className="flex min-h-48 items-center justify-center border border-dashed border-hairline p-6">
+          <span className="label-mono text-center opacity-40">
+            [ IMAGE PLACEHOLDER: {label.toUpperCase()} ]
+          </span>
+        </div>
+      )}
       {caption && (
         <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">
           {caption}

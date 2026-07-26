@@ -26,7 +26,7 @@ export type ContentBlock =
   | { kind: "labeledP"; lead: string; text: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
-  | { kind: "figure"; label: string; caption?: string };
+  | { kind: "figure"; label: string; caption?: string; src?: string };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -40,7 +40,7 @@ export type CaseStudyContent = {
   intro?: string[];
   contextNote?: string;
   atAGlance?: AtAGlanceItem[];
-  heroFigure?: { label: string; caption?: string };
+  heroFigure?: { label: string; caption?: string; src?: string };
   sections: CaseStudySection[];
 };
 
@@ -53,6 +53,8 @@ export type CaseStudy = {
   timeframe: string;
   /** Full case-study write-up. Fill in later — detail page shows a [DRAFT] placeholder while null. */
   content: CaseStudyContent | null;
+  /** Hidden from the case-studies list and unreachable by direct URL while true. */
+  hidden?: boolean;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -420,6 +422,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Lead Product Designer",
     timeframe: "2020–2022",
     content: null,
+    hidden: true,
   },
   {
     slug: "databebe",
@@ -429,6 +432,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Founder",
     timeframe: "2026–PRESENT",
     content: null,
+    hidden: true,
   },
 ];
 
@@ -444,13 +448,15 @@ export const workHistory: WorkHistoryItem[] = [
     org: "Databébé",
     role: "Founder",
     timeframe: "2026–PRESENT",
-    description: "B2C data-sync product, built solo, full stack.",
+    description:
+      "Live B2C data-sync product, designed and built solo, full stack.",
   },
   {
     org: "Margo Louise LLC",
     role: "Principal",
     timeframe: "2024–PRESENT",
-    description: "Audit-first systems design for early-stage SaaS teams.",
+    description:
+      "Product design and AI output systems for early-stage and AI-native SaaS teams. I design their products and build the systems that keep what their AI generates consistent and trustworthy across every surface.",
   },
   {
     org: "Agent.ai",
@@ -464,21 +470,20 @@ export const workHistory: WorkHistoryItem[] = [
     role: "Product Design Manager",
     timeframe: "2022–2023",
     description:
-      "Marina Map drove 18% upgrades against a 10% goal; cut map delivery from 22 days to 5 (a 77% reduction).",
+      "Led design on Marina Map, which drove 18% upgrades against a 10% goal and cut map delivery from 22 days to 5, a 77% reduction.",
   },
   {
     org: "Vendr",
     role: "Lead Product Designer",
     timeframe: "2020–2022",
     description:
-      "First designer at a B2B procurement platform; built the practice from zero during a $60M raise.",
+      "First designer at a B2B procurement platform. Built the design practice from zero during a $60M raise.",
   },
   {
     org: "HubSpot",
     role: "Product Designer",
     timeframe: "2015–2018",
-    description:
-      "Core work across Developer, CRM, Social, and Import teams.",
+    description: "Core product design across the Developer, CRM, Social, and Import teams.",
   },
 ];
 
