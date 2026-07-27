@@ -5,7 +5,7 @@ export const person = {
 
 export const about = {
   paragraphs: [
-    "I notice the system that's missing and go build it. With AI those systems got bigger and way more fun. Previously at HubSpot, Vendr, Agent.ai.",
+    "Product & Systems Designer. I notice the system that's missing and go build it. With AI those systems got bigger and way more fun. Previously at HubSpot, Vendr, Agent.ai.",
     "Off hours: planting dahlias in my little garden, online estate sales, and vampire novels.",
   ],
   firstSentence: "I notice the system that's missing and go build it.",
@@ -98,7 +98,7 @@ export const caseStudies: CaseStudy[] = [
         { label: "Scope", value: "24 live premium agents" },
         {
           label: "Outcome",
-          value: "Validated by blind test; adopted platform-wide",
+          value: "Validated by blind test; planned for platform-wide adoption",
         },
       ],
       beats: [
@@ -112,11 +112,14 @@ export const caseStudies: CaseStudy[] = [
         {
           label: "What I Built",
           text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
-          custom: "pipelineDiagram",
+          figureSrc: "/images/case-studies/content-mapping.png",
+          figureCaption:
+            "Mappings from content entities.",
         },
         {
           label: "How I Proved It",
-          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD, produced a conforming output spec and surfaced edge cases that were brought into the platform rules.",
+          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD. What came back was consistent with everything else in the system, and it surfaced edge cases my own audit had missed, which went back into the platform rules.",
+          custom: "pipelineDiagram",
         },
       ],
     },
@@ -143,11 +146,11 @@ export const caseStudies: CaseStudy[] = [
         },
         {
           label: "What I Built",
-          text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a product spec into a reviewable output spec engineering can build from.",
+          text: "A content system in three parts: a registry of content types and the rules binding each one to the components that render it, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
         },
         {
           label: "How I Proved It",
-          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD, produced a conforming output spec and surfaced edge cases that were brought into the platform rules.",
+          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD. What came back was consistent with everything else in the system, and it surfaced edge cases my own audit had missed, which went back into the platform rules.",
         },
       ],
       heroFigure: {
@@ -187,14 +190,14 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "labeledP",
               lead: "A central registry of content types.",
-              text: "The shared dictionary every agent draws from. Its main job is to settle how each kind of content is presented: a given kind of content maps to a specified type and the structural primitive that presents it, the same way every time, so a confidence score isn't a percentage on one agent and a badge on another, and the model can't invent a new shape or reach for the wrong one. Each type also defines its required pieces, its optional metadata, and what it falls back to when data is missing: if a primary metric isn't there, the output falls back to a less precise value rather than shipping an empty string.",
+              text: "The shared dictionary every agent draws from, plus the rules binding each type to the component that renders it. Engineering already had a Timeline, a Table, a card grid. What it didn't have was a rule for which content goes in which one, what fills each slot, and what happens when a field comes back empty. Career history and funding rounds both render as a Timeline, but they sort in opposite directions and fail differently when a date is missing. Without that binding written down, three agents reach for the same component and fill it three different ways, and every one of those calls is valid from the component's side. That's where drift comes from.",
             },
             {
               kind: "figure",
-              label: "Inference Marker",
+              label: "Content Mapping",
               caption:
-                "Facts stay plain; only the model's own judgment is marked as inferred.",
-              srcs: ["/images/case-studies/inference-marker.png"],
+                "Mappings from content entities.",
+              srcs: ["/images/case-studies/content-mapping.png"],
             },
             {
               kind: "labeledP",
