@@ -8,15 +8,15 @@ export function WorkTable({ items }: { items: WorkHistoryItem[] }) {
         <Fragment key={`${item.org}-${item.timeframe}`}>
           <div className="pt-px">{item.timeframe}</div>
           <div aria-hidden>●</div>
-          <div className="flex items-baseline">
-            <span className="flex w-[22ch] items-baseline gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-baseline">
+            <span className="flex items-baseline gap-2 sm:w-[22ch]">
               <span className="shrink-0">{item.org}</span>
               <span
                 aria-hidden
-                className="mb-[3px] min-w-2 flex-1 border-b border-dotted border-hairline"
+                className="mb-[3px] hidden min-w-2 flex-1 border-b border-dotted border-hairline sm:block"
               />
             </span>
-            <span className="pl-2 opacity-70">{item.role}</span>
+            <span className="opacity-70 sm:pl-2">{item.role}</span>
           </div>
 
           <div />
