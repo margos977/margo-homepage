@@ -204,13 +204,13 @@ export const caseStudies: CaseStudy[] = [
               lead: "Behavioral rules every agent inherits.",
               text: "Uncertainty handling, null states, and copy limits live in one platform-wide rule set instead of being re-specified per agent. Every output marks inference the same way, every empty state explains itself the same way, every predictive figure carries its confidence the same way. A new agent starts compliant instead of starting from scratch.",
             },
+           {
+              kind: "pipelineDiagram",
+            },
             {
               kind: "labeledP",
               lead: "The system turns the PRD into an output spec engineering builds from.",
               text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec: the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering then builds from that. The structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
-            },
-            {
-              kind: "pipelineDiagram",
             },
           ],
         },
