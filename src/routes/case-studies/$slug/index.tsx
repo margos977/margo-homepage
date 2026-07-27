@@ -235,13 +235,15 @@ function EditorialSnapshotBody({
           </dl>
         </div>
         {snapshot.heroSrc && (
-          <CaseFigure
-            src={snapshot.heroSrc}
-            alt={caseStudy.title}
-            caption={snapshot.heroCaption}
-            index={heroFigIndex}
-            showFigureLabel
-          />
+          <div className="mx-auto w-[70%]">
+            <CaseFigure
+              src={snapshot.heroSrc}
+              alt={caseStudy.title}
+              caption={snapshot.heroCaption}
+              index={heroFigIndex}
+              showFigureLabel
+            />
+          </div>
         )}
       </div>
 
@@ -364,7 +366,7 @@ function EditorialSnapshotBeat({
     return (
       <div>
         {textBlock}
-        <div className="mt-8">
+        <div className="mx-auto mt-8 w-[70%]">
           <CaseFigure
             src={beat.figureSrc}
             alt={beat.label}

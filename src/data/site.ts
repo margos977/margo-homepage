@@ -114,7 +114,7 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
       stats: [
-        { value: "24", label: "Live premium agents governed" },
+        { value: "24", label: "Live premium agents" },
         { value: "3", label: "Parts: registry, rules, generator" },
         { value: "1", label: "Blind run, zero prior context" },
       ],

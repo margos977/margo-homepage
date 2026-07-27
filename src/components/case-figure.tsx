@@ -42,7 +42,7 @@ export function CaseFigure({
         </button>
         {showFigureLabel ? (
           caption && (
-            <figcaption className="mt-3 flex gap-3 text-sm leading-[1.6] opacity-70">
+            <figcaption className="mt-3 flex justify-center gap-3 text-sm leading-[1.6] opacity-70">
               {typeof index === "number" && (
                 <span className="label-mono shrink-0 opacity-70">
                   FIG. {String(index).padStart(2, "0")}
