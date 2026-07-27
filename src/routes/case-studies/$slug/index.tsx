@@ -25,7 +25,7 @@ function CaseStudySnapshot() {
         to="/"
         hash="case-studies"
         hashScrollIntoView={{ behavior: "smooth" }}
-        className="label-mono opacity-60 transition-colors hover:text-highlight hover:opacity-100"
+        className="label-mono -mx-1.5 inline-block px-1.5 leading-none opacity-60 transition-colors hover:bg-highlight hover:text-ink hover:opacity-100"
       >
         ← / CASE STUDIES
       </Link>
@@ -123,7 +123,7 @@ function SnapshotBody({
         >
           <div>
             <p className="label-mono opacity-60">/ The Long Version</p>
-            <p className="mt-2 text-lg transition-colors group-hover:text-highlight">
+            <p className="-mx-1.5 mt-2 inline-block px-1.5 text-lg leading-tight transition-colors group-hover:bg-highlight group-hover:text-ink">
               Read the full case study
             </p>
           </div>
@@ -140,7 +140,7 @@ function SnapshotBody({
         to="/"
         hash="case-studies"
         hashScrollIntoView={{ behavior: "smooth" }}
-        className="label-mono mt-16 inline-block opacity-60 transition-colors hover:text-highlight hover:opacity-100"
+        className="label-mono -mx-1.5 mt-16 inline-block px-1.5 leading-none opacity-60 transition-colors hover:bg-highlight hover:text-ink hover:opacity-100"
       >
         ← / CASE STUDIES
       </Link>
