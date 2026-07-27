@@ -3,7 +3,13 @@ import { Link } from "@tanstack/react-router";
 import { ConsoleNav } from "@/components/console-nav";
 import { person } from "@/data/site";
 
-export function ConsoleLayout({ children }: { children: ReactNode }) {
+export function ConsoleLayout({
+  children,
+  sidebar = true,
+}: {
+  children: ReactNode;
+  sidebar?: boolean;
+}) {
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-[1200px] flex-col">
       <header className="w-full px-6 py-10 md:px-10">
@@ -15,7 +21,7 @@ export function ConsoleLayout({ children }: { children: ReactNode }) {
       </header>
 
       <div className="flex flex-1 flex-col md:flex-row">
-        <ConsoleNav />
+        {sidebar && <ConsoleNav />}
         <main className="flex-1 px-6 py-12 md:px-12">{children}</main>
       </div>
 

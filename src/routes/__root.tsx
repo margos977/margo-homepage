@@ -3,6 +3,7 @@ import {
   HeadContent,
   Scripts,
   createRootRoute,
+  useLocation,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ConsoleLayout } from "@/components/console-layout";
@@ -35,13 +36,16 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: ReactNode }) {
+  const location = useLocation();
+  const sidebar = !location.pathname.startsWith("/case-studies/");
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
       </head>
       <body>
-        <ConsoleLayout>{children}</ConsoleLayout>
+        <ConsoleLayout sidebar={sidebar}>{children}</ConsoleLayout>
         <Scripts />
       </body>
     </html>

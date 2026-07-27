@@ -50,6 +50,20 @@ export type CaseStudyContent = {
   sections: CaseStudySection[];
 };
 
+export type CaseSnapshotBeat = {
+  label: string;
+  text: string;
+  figureSrc?: string;
+  figureCaption?: string;
+};
+
+export type CaseSnapshot = {
+  heroSrc?: string;
+  heroCaption?: string;
+  facts: { label: string; value: string }[];
+  beats: CaseSnapshotBeat[];
+};
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -59,6 +73,8 @@ export type CaseStudy = {
   timeframe: string;
   /** Full case-study write-up. Fill in later — detail page shows a [DRAFT] placeholder while null. */
   content: CaseStudyContent | null;
+  /** Curated image-forward summary shown at /case-studies/$slug before the full essay. */
+  snapshot?: CaseSnapshot;
   /** Hidden from the case-studies list and unreachable by direct URL while true. */
   hidden?: boolean;
 };
@@ -72,6 +88,38 @@ export const caseStudies: CaseStudy[] = [
       "One content system governing what 24 live agents show, how they mark uncertainty, and how they handle thin data",
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
+    snapshot: {
+      heroSrc: "/images/case-studies/layer-matrix.png",
+      heroCaption: "The missing layer, owned by content architecture.",
+      facts: [
+        { label: "Role", value: "Lead Product Designer, Agentic AI" },
+        { label: "Scope", value: "24 live premium agents" },
+        {
+          label: "Outcome",
+          value: "Validated by blind test; adopted platform-wide",
+        },
+      ],
+      beats: [
+        {
+          label: "The Problem",
+          text: "Visual consistency was high, but output content drifted across every agent. No one owned the layer that governs it, so engineers were making product decisions in code while trying to ship.",
+          figureSrc: "/images/case-studies/agent-output-drift.png",
+          figureCaption:
+            "The same content type, rendered three ways by three agents, then resolved under one content system.",
+        },
+        {
+          label: "What I Built",
+          text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
+          figureSrc: "/images/case-studies/pipeline-diagram.png",
+          figureCaption:
+            "A product spec compiles against the system into a reviewable output spec engineering builds from.",
+        },
+        {
+          label: "How I Proved It",
+          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD, produced a conforming output spec and surfaced edge cases that were brought into the platform rules.",
+        },
+      ],
+    },
     content: {
       headline:
         "Governing what two dozen AI agents say, not just how they look",
@@ -242,6 +290,34 @@ export const caseStudies: CaseStudy[] = [
       "18% upgrades against a 10% goal; map delivery cut from 22 days to 5 across 208 marinas.",
     role: "Product Design Manager",
     timeframe: "2022–2023",
+    snapshot: {
+      heroSrc: "/images/case-studies/marina-map-whiteboard.png",
+      heroCaption: "The paper binder marinas used before Marina Map.",
+      facts: [
+        { label: "Role", value: "Product Design Manager" },
+        { label: "Scope", value: "208 marinas, 260+ maps published" },
+        {
+          label: "Outcome",
+          value: "18% upgrades against a 10% goal; delivery cut from 22 days to 5",
+        },
+      ],
+      beats: [
+        {
+          label: "The Problem",
+          text: "Marinas were running daily operations off a paper binder, by hand, with no history and no way to maximize occupancy.",
+        },
+        {
+          label: "What I Built",
+          text: "An interactive picture of the marina, with Dockwa's live reservation data layered on top: in-house designers built the maps in Figma, a CSM annotated slip locations, and the customer got a new interactive map inside their Assignments tool.",
+          figureSrc: "/images/case-studies/marina-map-new-map-view.webp",
+          figureCaption: "The new interactive map view inside Assignments.",
+        },
+        {
+          label: "How I Proved It",
+          text: "Rolled out to 208 marinas with over 260 maps published, beating every target: 18% upgrades against a 10% goal, and map delivery cut from 22 days to 5.",
+        },
+      ],
+    },
     content: {
       headline:
         "An interactive digital marina map that replaced the daily paper binder, and became Dockwa's most successful feature.",
