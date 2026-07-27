@@ -69,7 +69,7 @@ function CaseStudyFull() {
       {content.atAGlance && <AtAGlance items={content.atAGlance} />}
 
       {content.heroFigure?.srcs?.[0] && (
-        <div className="mt-8">
+        <div className="mx-auto mt-8 w-[70%]">
           <CaseFigure
             src={content.heroFigure.srcs[0]}
             alt={content.heroFigure.label}
