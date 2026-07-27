@@ -336,25 +336,38 @@ function EditorialSnapshotBeat({
     return <div>{textBlock}</div>;
   }
 
+  if (beat.secondaryFigureSrc) {
+    return (
+      <div>
+        {textBlock}
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <CaseFigure
+            src={beat.figureSrc}
+            alt={beat.label}
+            caption={beat.figureCaption}
+            index={figIndex}
+            showFigureLabel
+          />
+          <CaseFigure
+            src={beat.secondaryFigureSrc}
+            alt={beat.label}
+            caption={beat.secondaryFigureCaption}
+            index={secondaryFigIndex}
+            showFigureLabel
+          />
+        </div>
+      </div>
+    );
+  }
+
   const figureBlock = (
-    <div className="flex flex-col gap-8">
-      <CaseFigure
-        src={beat.figureSrc}
-        alt={beat.label}
-        caption={beat.figureCaption}
-        index={figIndex}
-        showFigureLabel
-      />
-      {beat.secondaryFigureSrc && (
-        <CaseFigure
-          src={beat.secondaryFigureSrc}
-          alt={beat.label}
-          caption={beat.secondaryFigureCaption}
-          index={secondaryFigIndex}
-          showFigureLabel
-        />
-      )}
-    </div>
+    <CaseFigure
+      src={beat.figureSrc}
+      alt={beat.label}
+      caption={beat.figureCaption}
+      index={figIndex}
+      showFigureLabel
+    />
   );
 
   return (
