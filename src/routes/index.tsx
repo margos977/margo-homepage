@@ -38,7 +38,7 @@ function Home() {
               key={cs.slug}
               to="/case-studies/$slug"
               params={{ slug: cs.slug }}
-              className="group flex flex-col gap-2 border-b border-hairline py-6 last:border-b-0"
+              className="group flex flex-col gap-2 border-b border-hairline px-4 py-6 -mx-4 transition-colors hover:bg-row-hover last:border-b-0"
             >
               <div className="flex items-baseline justify-between gap-4">
                 <p className="flex items-center gap-2">
@@ -48,7 +48,7 @@ function Home() {
                 </p>
                 <span
                   aria-hidden
-                  className="translate-x-[-4px] opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100"
+                  className="translate-x-[-4px] text-highlight opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100"
                 >
                   →
                 </span>
