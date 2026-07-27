@@ -35,7 +35,8 @@ export type ContentBlock =
       /** Always render full width below its preceding text, never side by side. */
       standalone?: boolean;
     }
-  | { kind: "pipelineDiagram" };
+  | { kind: "pipelineDiagram" }
+  | { kind: "carousel"; label: string; srcs: string[] };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -295,7 +296,7 @@ export const caseStudies: CaseStudy[] = [
     timeframe: "2022–2023",
     snapshot: {
       heroSrc: "/images/case-studies/marina-map-whiteboard.png",
-      heroCaption: "The paper binder marinas used before Marina Map.",
+      heroCaption: "Example of white board map used before Marina Map.",
       facts: [
         { label: "Role", value: "Product Design Manager" },
         { label: "Scope", value: "208 marinas, 260+ maps published" },
@@ -344,7 +345,9 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "figure",
               label: "Active Paper Marina Map",
+              caption: "Example of white board map used before Marina Map.",
               srcs: ["/images/case-studies/marina-map-whiteboard.png"],
+              standalone: true,
             },
           ],
         },
@@ -418,14 +421,10 @@ export const caseStudies: CaseStudy[] = [
               text: "Once the CSM published, the customer got a new interactive map inside their Assignments tool.",
             },
             {
-              kind: "figure",
-              label: "Annotation: Yellow-Box Placeholders Becoming Slips",
-              srcs: ["/images/case-studies/marina-map-annotation.webp"],
-            },
-            {
-              kind: "figure",
-              label: "Customer-Facing List View vs. New Map View",
+              kind: "carousel",
+              label: "Solution Screen",
               srcs: [
+                "/images/case-studies/marina-map-annotation.webp",
                 "/images/case-studies/marina-map-list-view.webp",
                 "/images/case-studies/marina-map-new-map-view.webp",
               ],

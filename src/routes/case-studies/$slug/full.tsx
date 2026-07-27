@@ -8,6 +8,7 @@ import type {
 import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
+import { ImageCarousel } from "@/components/image-carousel";
 
 export const Route = createFileRoute("/case-studies/$slug/full")({
   loader: ({ params }) => {
@@ -46,7 +47,7 @@ function CaseStudyFull() {
       </div>
 
       <h1 className="mt-2 text-4xl leading-tight">{caseStudy.title}</h1>
-      <p className="mt-4 max-w-xl text-xl leading-snug">{content.headline}</p>
+      <p className="mt-4 text-xl leading-snug">{content.headline}</p>
 
       {content.intro && (
         <div className="mt-8 flex flex-col gap-4">
@@ -290,6 +291,8 @@ function Block({
       return <FullFigure block={block} startIndex={figureIndex} />;
     case "pipelineDiagram":
       return <PipelineDiagram />;
+    case "carousel":
+      return <ImageCarousel srcs={block.srcs} alt={block.label} />;
   }
 }
 
@@ -337,7 +340,7 @@ function FullFigure({
         ))}
       </div>
       {caption && (
-        <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">
+        <figcaption className="mt-3 text-center text-sm leading-[1.6] opacity-70">
           {caption}
         </figcaption>
       )}

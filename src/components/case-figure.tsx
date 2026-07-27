@@ -30,7 +30,7 @@ export function CaseFigure({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="group relative block w-full cursor-zoom-in border border-hairline text-left"
+          className="group relative block w-full cursor-zoom-in text-left"
         >
           <img src={src} alt={alt} className="block w-full" />
           <span className="label-mono absolute bottom-2 right-2 border border-hairline bg-bg px-2 py-1 opacity-0 transition-opacity group-hover:opacity-100">
@@ -38,7 +38,7 @@ export function CaseFigure({
           </span>
         </button>
         {caption && (
-          <figcaption className="mt-3 text-sm leading-[1.6] opacity-70">
+          <figcaption className="mt-3 text-center text-sm leading-[1.6] opacity-70">
             {caption}
           </figcaption>
         )}
