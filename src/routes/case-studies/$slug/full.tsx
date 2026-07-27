@@ -29,7 +29,7 @@ function CaseStudyFull() {
   const sectionPlans = buildSectionPlans(content.sections);
 
   return (
-    <article className="mx-auto max-w-[52rem]">
+    <article className="w-full">
       <Link
         to="/case-studies/$slug"
         params={{ slug: caseStudy.slug }}

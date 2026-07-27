@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type Rule = { id: string; label: string; text: string };
 
@@ -6,7 +6,7 @@ const RULES: Rule[] = [
   {
     id: "copy",
     label: "// Copy constraint",
-    text: "max_words: 20 — headline truncated at word limit",
+    text: "max_words: 20 - headline truncated at word limit",
   },
   {
     id: "signal",
@@ -20,14 +20,17 @@ const RULES: Rule[] = [
   },
 ];
 
+const STEP_MS = 2000;
+
 type LinePath = { x1: number; y1: number; x2: number; y2: number };
 
 export function PipelineDiagram() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const ruleRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const ruleRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const fieldRefs = useRef<Record<string, HTMLElement | null>>({});
   const [paths, setPaths] = useState<Record<string, LinePath>>({});
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeId = RULES[activeIndex].id;
 
   useLayoutEffect(() => {
     function measure() {
@@ -56,18 +59,16 @@ export function PipelineDiagram() {
     return () => window.removeEventListener("resize", measure);
   }, []);
 
-  function clear(id: string) {
-    setActiveId((current) => (current === id ? null : current));
-  }
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % RULES.length);
+    }, STEP_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div ref={containerRef} className="relative border border-hairline p-6 md:p-8">
-      <p className="label-mono opacity-60">/ Spec → Render Pipeline</p>
-
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
-      >
+      <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
         {RULES.map((rule) => {
           const path = paths[rule.id];
           if (!path) return null;
@@ -78,43 +79,40 @@ export function PipelineDiagram() {
               key={rule.id}
               d={`M ${path.x1} ${path.y1} C ${midX} ${path.y1}, ${midX} ${path.y2}, ${path.x2} ${path.y2}`}
               fill="none"
-              stroke={active ? "var(--color-highlight)" : "var(--color-hairline)"}
+              stroke="#B8680E"
               strokeWidth={active ? 2 : 1}
               strokeDasharray="4 4"
-              style={{ opacity: active ? 1 : activeId ? 0.15 : 0.6 }}
-              className="transition-[opacity,stroke,stroke-width] duration-150"
+              style={{ opacity: active ? 0.6 : 0.3 }}
+              className="transition-[opacity,stroke-width] duration-500"
             />
           );
         })}
       </svg>
 
-      <div className="relative mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+      <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
         <div>
           <p className="label-mono opacity-60">
             / Spec: financial-metric-card.spec.md
           </p>
           <div className="mt-4 flex flex-col gap-3">
             {RULES.map((rule) => (
-              <button
+              <div
                 key={rule.id}
-                type="button"
                 ref={(el) => {
                   ruleRefs.current[rule.id] = el;
                 }}
-                onMouseEnter={() => setActiveId(rule.id)}
-                onMouseLeave={() => clear(rule.id)}
-                onFocus={() => setActiveId(rule.id)}
-                onBlur={() => clear(rule.id)}
-                className={
-                  "w-full border-l-2 py-2 pl-4 text-left transition-colors " +
-                  (activeId === rule.id
-                    ? "border-highlight bg-highlight/10"
-                    : "border-hairline")
-                }
+                style={{
+                  backgroundColor: "rgba(184, 104, 14, 0.08)",
+                  borderColor:
+                    activeId === rule.id
+                      ? "rgba(184, 104, 14, 0.6)"
+                      : "rgba(184, 104, 14, 0.2)",
+                }}
+                className="border px-4 py-3 transition-colors duration-500"
               >
                 <span className="label-mono block opacity-60">{rule.label}</span>
                 <span className="mt-1 block text-sm leading-[1.5]">{rule.text}</span>
-              </button>
+              </div>
             ))}
           </div>
         </div>
@@ -126,10 +124,11 @@ export function PipelineDiagram() {
               ref={(el) => {
                 fieldRefs.current.copy = el;
               }}
-              className={
-                "text-base leading-snug transition-colors " +
-                (activeId === "copy" ? "bg-highlight/20" : "")
-              }
+              className="text-base leading-snug transition-colors duration-500"
+              style={{
+                backgroundColor:
+                  activeId === "copy" ? "rgba(184, 104, 14, 0.12)" : "transparent",
+              }}
             >
               Missed Earnings Signals Q3 Analyst Targets
             </h4>
@@ -144,10 +143,13 @@ export function PipelineDiagram() {
                 ref={(el) => {
                   fieldRefs.current.signal = el;
                 }}
-                className={
-                  "label-mono inline-block border border-hairline px-2 py-1 transition-colors " +
-                  (activeId === "signal" ? "border-highlight bg-highlight/20" : "")
-                }
+                style={{
+                  borderColor:
+                    activeId === "signal" ? "rgba(184, 104, 14, 0.6)" : undefined,
+                  backgroundColor:
+                    activeId === "signal" ? "rgba(184, 104, 14, 0.12)" : "transparent",
+                }}
+                className="label-mono inline-block border border-hairline px-2 py-1 transition-colors duration-500"
               >
                 ⚠ Low Signal
               </span>
@@ -157,12 +159,13 @@ export function PipelineDiagram() {
               ref={(el) => {
                 fieldRefs.current.null = el;
               }}
-              className={
-                "label-mono mt-4 border-t border-hairline pt-3 opacity-60 transition-colors " +
-                (activeId === "null" ? "bg-highlight/20" : "")
-              }
+              className="label-mono mt-4 border-t border-hairline pt-3 opacity-60 transition-colors duration-500"
+              style={{
+                backgroundColor:
+                  activeId === "null" ? "rgba(184, 104, 14, 0.12)" : "transparent",
+              }}
             >
-              analyst_notes → Data unavailable
+              Analyst Note: data unavailable
             </p>
           </div>
         </div>
