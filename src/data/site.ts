@@ -108,12 +108,6 @@ export const caseStudies: CaseStudy[] = [
             "The same content type, rendered three ways by three agents, then resolved under one content system.",
         },
         {
-          heroFigure: {
-            label: "Layer Matrix",
-            caption: "The missing layer, owned by content architecture.",
-            srcs: ["/images/case-studies/layer-matrix.png"],
-        },
-        {
           label: "What I Built",
           text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
         },
