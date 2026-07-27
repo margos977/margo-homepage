@@ -168,6 +168,7 @@ export const caseStudies: CaseStudy[] = [
               label: "Pipeline Diagram",
               caption:
                 "A product spec compiles against the system into a reviewable output spec engineering builds from.",
+              srcs: ["/images/case-studies/pipeline-diagram.png"],
             },
           ],
         },
