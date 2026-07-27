@@ -63,6 +63,8 @@ export type CaseSnapshotBeat = {
   secondaryFigureSrc?: string;
   secondaryFigureCaption?: string;
   custom?: "pipelineDiagram";
+  /** Full width, image below the text, instead of the alternating side-by-side pairing. */
+  standalone?: boolean;
 };
 
 export type CaseSnapshot = {
@@ -341,6 +343,7 @@ export const caseStudies: CaseStudy[] = [
           text: "Rolled out to 208 marinas with over 260 maps published, beating every target: 18% upgrades against a 10% goal, and map delivery cut from 22 days to 5.",
           figureSrc: "/images/case-studies/rollout.png",
           figureCaption: "Rolled out to 208 marinas.",
+          standalone: true,
         },
       ],
     },

@@ -360,6 +360,23 @@ function EditorialSnapshotBeat({
     );
   }
 
+  if (beat.standalone) {
+    return (
+      <div>
+        {textBlock}
+        <div className="mt-8">
+          <CaseFigure
+            src={beat.figureSrc}
+            alt={beat.label}
+            caption={beat.figureCaption}
+            index={figIndex}
+            showFigureLabel
+          />
+        </div>
+      </div>
+    );
+  }
+
   const figureBlock = (
     <CaseFigure
       src={beat.figureSrc}
