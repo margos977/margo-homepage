@@ -205,11 +205,6 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "labeledP",
-              lead: "A central registry of content types.",
-              text: "The shared dictionary every agent draws from, plus the rules binding each type to the component that renders it. Engineering already had a Timeline, a Table, a card grid. What it didn't have was a rule for which content goes in which one, what fills each slot, and what happens when a field comes back empty. Career history and funding rounds both render as a Timeline, but they sort in opposite directions and fail differently when a date is missing. Without that binding written down, three agents reach for the same component and fill it three different ways, and every one of those calls is valid from the component's side. That's where drift comes from.",
-            },
-            {
-              kind: "labeledP",
               lead: "Behavioral rules every agent inherits.",
               text: "Uncertainty handling, null states, and copy limits live in one platform-wide rule set instead of being re-specified per agent. Every output marks inference the same way, every empty state explains itself the same way, every predictive figure carries its confidence the same way. A new agent starts compliant instead of starting from scratch.",
             },
