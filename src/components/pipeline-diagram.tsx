@@ -20,6 +20,7 @@ const RULES: Rule[] = [
   },
 ];
 
+const ACCENT = "#4f46e5";
 const STEP_MS = 2000;
 
 type LinePath = { x1: number; y1: number; x2: number; y2: number };
@@ -79,7 +80,7 @@ export function PipelineDiagram() {
               key={rule.id}
               d={`M ${path.x1} ${path.y1} C ${midX} ${path.y1}, ${midX} ${path.y2}, ${path.x2} ${path.y2}`}
               fill="none"
-              stroke="#B8680E"
+              stroke={ACCENT}
               strokeWidth={active ? 2 : 1}
               strokeDasharray="4 4"
               style={{ opacity: active ? 0.6 : 0.3 }}
@@ -102,11 +103,11 @@ export function PipelineDiagram() {
                   ruleRefs.current[rule.id] = el;
                 }}
                 style={{
-                  backgroundColor: "rgba(184, 104, 14, 0.08)",
+                  backgroundColor: "rgba(79, 70, 229, 0.08)",
                   borderColor:
                     activeId === rule.id
-                      ? "rgba(184, 104, 14, 0.6)"
-                      : "rgba(184, 104, 14, 0.2)",
+                      ? "rgba(79, 70, 229, 0.6)"
+                      : "rgba(79, 70, 229, 0.2)",
                 }}
                 className="border px-4 py-3 transition-colors duration-500"
               >
@@ -121,33 +122,27 @@ export function PipelineDiagram() {
           <p className="label-mono opacity-60">/ Rendered output (React)</p>
           <div className="aria-mock mt-4">
             <div className="rounded-card overflow-hidden border border-slate-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-4 py-2">
-                <div className="flex items-center gap-1.5">
-                  <span className="rounded-chip flex h-4 w-4 items-center justify-center bg-indigo-600 text-[9px] font-bold text-white">
-                    A
-                  </span>
-                  <span className="text-[11px] font-medium text-slate-500">
-                    Aria
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400">
-                  Analyst Targets
+              <div className="flex items-center gap-1.5 border-b border-slate-100 bg-slate-50 px-4 py-2">
+                <span className="rounded-chip flex h-4 w-4 items-center justify-center bg-indigo-600 text-[9px] font-bold text-white">
+                  A
+                </span>
+                <span className="text-[11px] font-medium text-slate-500">
+                  Aria
                 </span>
               </div>
 
               <div className="p-5">
-                <h4
-                  ref={(el) => {
-                    fieldRefs.current.copy = el;
-                  }}
-                  className="rounded-chip text-sm font-semibold text-slate-900 transition-colors duration-500"
-                  style={{
-                    backgroundColor:
-                      activeId === "copy" ? "rgba(184, 104, 14, 0.12)" : "transparent",
-                  }}
-                >
-                  Q3 Analyst Targets
-                </h4>
+                <div className="flex items-center gap-2">
+                  <StatusDot
+                    dotRef={(el) => {
+                      fieldRefs.current.copy = el;
+                    }}
+                    active={activeId === "copy"}
+                  />
+                  <h4 className="text-sm font-semibold text-slate-900">
+                    Q3 Analyst Targets
+                  </h4>
+                </div>
 
                 <div className="mt-3 flex items-baseline gap-2">
                   <span className="text-2xl font-semibold text-red-600">
@@ -158,40 +153,58 @@ export function PipelineDiagram() {
                   </span>
                 </div>
 
-                <div className="mt-4">
-                  <span
-                    ref={(el) => {
+                <div className="mt-4 flex items-center gap-2">
+                  <StatusDot
+                    dotRef={(el) => {
                       fieldRefs.current.signal = el;
                     }}
-                    style={{
-                      boxShadow:
-                        activeId === "signal"
-                          ? "0 0 0 1.5px rgba(184, 104, 14, 0.6)"
-                          : "none",
-                    }}
-                    className="rounded-pill inline-flex items-center gap-1 border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-700 transition-shadow duration-500"
-                  >
+                    active={activeId === "signal"}
+                  />
+                  <span className="rounded-pill inline-flex items-center gap-1 border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-700">
                     ⚠ Low Signal
                   </span>
                 </div>
 
-                <p
-                  ref={(el) => {
-                    fieldRefs.current.null = el;
-                  }}
-                  className="rounded-chip mt-4 border-t border-slate-100 pt-3 text-xs text-slate-400 transition-colors duration-500"
-                  style={{
-                    backgroundColor:
-                      activeId === "null" ? "rgba(184, 104, 14, 0.12)" : "transparent",
-                  }}
-                >
-                  Analyst Note: data unavailable
-                </p>
+                <div className="mt-4 flex items-center gap-2 border-t border-slate-100 pt-3">
+                  <StatusDot
+                    dotRef={(el) => {
+                      fieldRefs.current.null = el;
+                    }}
+                    active={activeId === "null"}
+                  />
+                  <p className="text-xs text-slate-400">
+                    Analyst Note: data unavailable
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function StatusDot({
+  dotRef,
+  active,
+}: {
+  dotRef: (el: HTMLSpanElement | null) => void;
+  active: boolean;
+}) {
+  return (
+    <span className="relative flex h-2.5 w-2.5 shrink-0 items-center justify-center">
+      {active && (
+        <span
+          className="rounded-pill absolute h-2.5 w-2.5 animate-ping"
+          style={{ backgroundColor: ACCENT, opacity: 0.5 }}
+        />
+      )}
+      <span
+        ref={dotRef}
+        className="rounded-pill relative h-1.5 w-1.5 transition-[background-color] duration-300"
+        style={{ backgroundColor: active ? ACCENT : "#e2e8f0" }}
+      />
+    </span>
   );
 }

@@ -83,14 +83,11 @@ function SnapshotBody({
 }) {
   return (
     <>
-      <p className="mt-4 max-w-2xl text-xl leading-snug">{caseStudy.outcome}</p>
+      <p className="mx-auto mt-4 max-w-2xl text-xl leading-snug">{caseStudy.outcome}</p>
 
-      <dl className="mt-8 flex flex-col border-t border-hairline">
+      <dl className="mx-auto mt-8 flex max-w-2xl flex-col">
         {snapshot.facts.map((fact) => (
-          <div
-            key={fact.label}
-            className="flex gap-6 border-b border-hairline py-3"
-          >
+          <div key={fact.label} className="flex gap-6 py-3">
             <dt className="label-mono w-28 shrink-0 opacity-60">
               {fact.label}
             </dt>
@@ -156,7 +153,7 @@ function SnapshotBeat({
   index: number;
 }) {
   const textBlock = (
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-2xl">
       <p className="label-mono opacity-60">/ {beat.label.toUpperCase()}</p>
       <p className="mt-4 text-[17px] leading-[1.6]">{beat.text}</p>
     </div>
