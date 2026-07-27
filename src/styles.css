@@ -69,4 +69,19 @@
   .hairline {
     border-color: var(--color-hairline);
   }
+
+  /*
+   * Aria dashboard mock (pipeline-diagram.tsx): deliberately opts out of the
+   * site's flat, zero-radius system to read as an embedded screenshot of a
+   * real product rather than more portfolio chrome.
+   */
+  .aria-mock .rounded-card {
+    border-radius: 12px !important;
+  }
+  .aria-mock .rounded-pill {
+    border-radius: 9999px !important;
+  }
+  .aria-mock .rounded-chip {
+    border-radius: 5px !important;
+  }
 }

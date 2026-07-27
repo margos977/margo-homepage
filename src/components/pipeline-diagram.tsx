@@ -119,54 +119,76 @@ export function PipelineDiagram() {
 
         <div>
           <p className="label-mono opacity-60">/ Rendered output (React)</p>
-          <div className="mt-4 border border-hairline p-5">
-            <h4
-              ref={(el) => {
-                fieldRefs.current.copy = el;
-              }}
-              className="text-base leading-snug transition-colors duration-500"
-              style={{
-                backgroundColor:
-                  activeId === "copy" ? "rgba(184, 104, 14, 0.12)" : "transparent",
-              }}
-            >
-              Missed Earnings Signals Q3 Analyst Targets
-            </h4>
+          <div className="aria-mock mt-4">
+            <div className="rounded-card overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-4 py-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="rounded-chip flex h-4 w-4 items-center justify-center bg-indigo-600 text-[9px] font-bold text-white">
+                    A
+                  </span>
+                  <span className="text-[11px] font-medium text-slate-500">
+                    Aria
+                  </span>
+                </div>
+                <span className="text-[10px] text-slate-400">
+                  Analyst Targets
+                </span>
+              </div>
 
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-2xl text-rust">-3.2%</span>
-              <span className="label-mono opacity-60">EPS vs. consensus</span>
+              <div className="p-5">
+                <h4
+                  ref={(el) => {
+                    fieldRefs.current.copy = el;
+                  }}
+                  className="rounded-chip text-sm font-semibold text-slate-900 transition-colors duration-500"
+                  style={{
+                    backgroundColor:
+                      activeId === "copy" ? "rgba(184, 104, 14, 0.12)" : "transparent",
+                  }}
+                >
+                  Q3 Analyst Targets
+                </h4>
+
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="text-2xl font-semibold text-red-600">
+                    -3.2%
+                  </span>
+                  <span className="text-xs text-slate-400">
+                    EPS vs. consensus
+                  </span>
+                </div>
+
+                <div className="mt-4">
+                  <span
+                    ref={(el) => {
+                      fieldRefs.current.signal = el;
+                    }}
+                    style={{
+                      boxShadow:
+                        activeId === "signal"
+                          ? "0 0 0 1.5px rgba(184, 104, 14, 0.6)"
+                          : "none",
+                    }}
+                    className="rounded-pill inline-flex items-center gap-1 border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-700 transition-shadow duration-500"
+                  >
+                    ⚠ Low Signal
+                  </span>
+                </div>
+
+                <p
+                  ref={(el) => {
+                    fieldRefs.current.null = el;
+                  }}
+                  className="rounded-chip mt-4 border-t border-slate-100 pt-3 text-xs text-slate-400 transition-colors duration-500"
+                  style={{
+                    backgroundColor:
+                      activeId === "null" ? "rgba(184, 104, 14, 0.12)" : "transparent",
+                  }}
+                >
+                  Analyst Note: data unavailable
+                </p>
+              </div>
             </div>
-
-            <div className="mt-4">
-              <span
-                ref={(el) => {
-                  fieldRefs.current.signal = el;
-                }}
-                style={{
-                  borderColor:
-                    activeId === "signal" ? "rgba(184, 104, 14, 0.6)" : undefined,
-                  backgroundColor:
-                    activeId === "signal" ? "rgba(184, 104, 14, 0.12)" : "transparent",
-                }}
-                className="label-mono inline-block border border-hairline px-2 py-1 transition-colors duration-500"
-              >
-                ⚠ Low Signal
-              </span>
-            </div>
-
-            <p
-              ref={(el) => {
-                fieldRefs.current.null = el;
-              }}
-              className="label-mono mt-4 border-t border-hairline pt-3 opacity-60 transition-colors duration-500"
-              style={{
-                backgroundColor:
-                  activeId === "null" ? "rgba(184, 104, 14, 0.12)" : "transparent",
-              }}
-            >
-              Analyst Note: data unavailable
-            </p>
           </div>
         </div>
       </div>

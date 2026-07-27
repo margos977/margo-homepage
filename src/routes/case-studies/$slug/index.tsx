@@ -85,30 +85,29 @@ function SnapshotBody({
     <>
       <p className="mt-4 max-w-2xl text-xl leading-snug">{caseStudy.outcome}</p>
 
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
-        <div className="flex flex-col justify-center">
-          <dl className="flex flex-col border-t border-hairline">
-            {snapshot.facts.map((fact) => (
-              <div
-                key={fact.label}
-                className="flex gap-6 border-b border-hairline py-3"
-              >
-                <dt className="label-mono w-28 shrink-0 opacity-60">
-                  {fact.label}
-                </dt>
-                <dd className="text-[15px] leading-[1.5]">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        {snapshot.heroSrc && (
+      <dl className="mt-8 flex flex-col border-t border-hairline">
+        {snapshot.facts.map((fact) => (
+          <div
+            key={fact.label}
+            className="flex gap-6 border-b border-hairline py-3"
+          >
+            <dt className="label-mono w-28 shrink-0 opacity-60">
+              {fact.label}
+            </dt>
+            <dd className="text-[15px] leading-[1.5]">{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {snapshot.heroSrc && (
+        <div className="mt-8">
           <CaseFigure
             src={snapshot.heroSrc}
             alt={caseStudy.title}
             caption={snapshot.heroCaption}
           />
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="mt-16 flex flex-col gap-16">
         {snapshot.beats.map((beat, i) => (
@@ -156,21 +155,17 @@ function SnapshotBeat({
   beat: CaseSnapshotBeat;
   index: number;
 }) {
-  const imageFirst = index % 2 === 1;
-
   const textBlock = (
-    <div className="flex flex-col justify-center">
+    <div className="max-w-2xl">
       <p className="label-mono opacity-60">/ {beat.label.toUpperCase()}</p>
-      <p className="mt-4 max-w-[46ch] text-[17px] leading-[1.6]">
-        {beat.text}
-      </p>
+      <p className="mt-4 text-[17px] leading-[1.6]">{beat.text}</p>
     </div>
   );
 
   if (beat.custom === "pipelineDiagram") {
     return (
       <div>
-        <div className="max-w-2xl">{textBlock}</div>
+        {textBlock}
         <div className="mt-8">
           <PipelineDiagram />
         </div>
@@ -179,37 +174,20 @@ function SnapshotBeat({
   }
 
   if (!beat.figureSrc) {
-    return <div className="max-w-2xl">{textBlock}</div>;
+    return <div>{textBlock}</div>;
   }
 
-  const figureBlock = (
-    <CaseFigure
-      src={beat.figureSrc}
-      alt={beat.label}
-      caption={beat.figureCaption}
-      index={index + 1}
-    />
-  );
-
   return (
-    <div
-      className={
-        imageFirst
-          ? "grid grid-cols-1 gap-8 md:grid-cols-[3fr_2fr] md:gap-12"
-          : "grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12"
-      }
-    >
-      {imageFirst ? (
-        <>
-          {figureBlock}
-          {textBlock}
-        </>
-      ) : (
-        <>
-          {textBlock}
-          {figureBlock}
-        </>
-      )}
+    <div>
+      {textBlock}
+      <div className="mt-8">
+        <CaseFigure
+          src={beat.figureSrc}
+          alt={beat.label}
+          caption={beat.figureCaption}
+          index={index + 1}
+        />
+      </div>
     </div>
   );
 }

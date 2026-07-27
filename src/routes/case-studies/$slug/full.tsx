@@ -33,7 +33,7 @@ function CaseStudyFull() {
       <Link
         to="/case-studies/$slug"
         params={{ slug: caseStudy.slug }}
-        className="label-mono opacity-60 transition-opacity hover:opacity-100"
+        className="label-mono -mx-1.5 inline-block px-1.5 leading-none opacity-60 transition-colors hover:bg-highlight hover:text-ink hover:opacity-100"
       >
         ← / BACK TO SNAPSHOT
       </Link>
@@ -86,7 +86,7 @@ function CaseStudyFull() {
       <Link
         to="/case-studies/$slug"
         params={{ slug: caseStudy.slug }}
-        className="label-mono mt-16 inline-block opacity-60 transition-opacity hover:opacity-100"
+        className="label-mono -mx-1.5 mt-16 inline-block px-1.5 leading-none opacity-60 transition-colors hover:bg-highlight hover:text-ink hover:opacity-100"
       >
         ← / BACK TO SNAPSHOT
       </Link>
