@@ -124,7 +124,8 @@ export const caseStudies: CaseStudy[] = [
               kind: "figure",
               label: "Agent Output Drift",
               caption:
-                "Same data, three agents (prose, invented markup, a dense table), then the same three under one system.",
+                "The same content type, rendered three ways by three agents, then resolved under one content system.",
+              srcs: ["/images/case-studies/agent-output-drift.png"],
             },
           ],
         },
