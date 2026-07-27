@@ -110,6 +110,9 @@ export const caseStudies: CaseStudy[] = [
         {
           label: "What I Built",
           text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
+          figureSrc: "/images/case-studies/content-mapping.png",
+          figureCaption:
+            "Mappings from content entities."
         },
         {
           label: "How I Proved It",
@@ -191,10 +194,10 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "figure",
-              label: "Inference Marker",
+              label: "Content Mapping",
               caption:
-                "Facts stay plain; only the model's own judgment is marked as inferred.",
-              srcs: ["/images/case-studies/inference-marker.png"],
+                "Mappings from content entities.",
+              srcs: ["/images/case-studies/content-mapping.png"],
             },
             {
               kind: "labeledP",
