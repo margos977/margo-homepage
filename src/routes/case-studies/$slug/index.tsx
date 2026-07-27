@@ -20,7 +20,7 @@ function CaseStudySnapshot() {
   const caseStudy = Route.useLoaderData();
 
   return (
-    <article className="max-w-3xl">
+    <article className="mx-auto max-w-[52rem]">
       <Link
         to="/"
         hash="case-studies"
@@ -31,7 +31,7 @@ function CaseStudySnapshot() {
       </Link>
 
       <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <p className="label-mono opacity-60">/ Case Study</p>
+        <p className="label-mono opacity-60">/ Snapshot</p>
         <p className="label-mono opacity-60">
           {caseStudy.timeframe} · {caseStudy.org}
         </p>
@@ -82,7 +82,7 @@ function SnapshotBody({
 }) {
   return (
     <>
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
         <div className="flex flex-col justify-center">
           <p className="max-w-md text-xl leading-snug">{caseStudy.outcome}</p>
           <dl className="mt-8 flex flex-col border-t border-hairline">
@@ -177,7 +177,13 @@ function SnapshotBeat({
   );
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+    <div
+      className={
+        imageFirst
+          ? "grid grid-cols-1 gap-8 md:grid-cols-[3fr_2fr] md:gap-12"
+          : "grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12"
+      }
+    >
       {imageFirst ? (
         <>
           {figureBlock}

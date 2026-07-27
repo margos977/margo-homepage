@@ -28,7 +28,7 @@ function CaseStudyFull() {
   const sectionPlans = buildSectionPlans(content.sections);
 
   return (
-    <article className="max-w-2xl">
+    <article className="mx-auto max-w-[52rem]">
       <Link
         to="/case-studies/$slug"
         params={{ slug: caseStudy.slug }}
@@ -231,7 +231,13 @@ function PairedUnit({
   );
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+    <div
+      className={
+        imageFirst
+          ? "grid grid-cols-1 gap-8 md:grid-cols-[3fr_2fr] md:gap-12"
+          : "grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12"
+      }
+    >
       {imageFirst ? (
         <>
           {figureEl}
