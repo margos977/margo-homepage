@@ -185,6 +185,15 @@ function SnapshotBeat({
           index={index + 1}
         />
       </div>
+      {beat.secondaryFigureSrc && (
+        <div className="mt-8">
+          <CaseFigure
+            src={beat.secondaryFigureSrc}
+            alt={beat.label}
+            caption={beat.secondaryFigureCaption}
+          />
+        </div>
+      )}
     </div>
   );
 }

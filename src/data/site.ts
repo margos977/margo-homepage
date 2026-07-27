@@ -59,6 +59,9 @@ export type CaseSnapshotBeat = {
   text: string;
   figureSrc?: string;
   figureCaption?: string;
+  /** Stacked directly below figureSrc, e.g. for a related follow-up image. */
+  secondaryFigureSrc?: string;
+  secondaryFigureCaption?: string;
   custom?: "pipelineDiagram";
 };
 
@@ -315,6 +318,8 @@ export const caseStudies: CaseStudy[] = [
           text: "An interactive picture of the marina, with Dockwa's live reservation data layered on top: in-house designers built the maps in Figma, a CSM annotated slip locations, and the customer got a new interactive map inside their Assignments tool.",
           figureSrc: "/images/case-studies/marina-map-new-map-view.webp",
           figureCaption: "The new interactive map view inside Assignments.",
+          secondaryFigureSrc: "/images/case-studies/marina-map-selfservice-docks.webp",
+          secondaryFigureCaption: "Future state designs.",
         },
         {
           label: "How I Proved It",
