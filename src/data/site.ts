@@ -352,19 +352,16 @@ export const caseStudies: CaseStudy[] = [
         "An interactive digital marina map that replaced the daily paper binder, and became Dockwa's most successful feature.",
       sections: [
         {
-          heading: "At a glance",
+          heading: "tldr;",
           blocks: [
             {
               kind: "lead",
               text: "208 marinas, 260+ maps published, 18% upgrades against a 10% goal, map delivery cut from 22 days to 5.",
             },
-            {
-              kind: "p",
-              text: "Dockwa is a marina management platform, finding efficiencies for marina operators and improving the experience for boaters on the water. Marina Map layered Dockwa's existing reservation data onto a live, interactive picture of the marina, so dockmasters could stop running operations off a hand-edited binder.",
-            },
+           
             {
               kind: "labeledP",
-              lead: "Team.",
+              lead: "Team:",
               text: "I led design as Product Design Manager, working with a second product designer, a PM, four engineers and a tech lead, and an external agency. Stakeholders ran up to the CEO, GTM leadership, and the VPs of Product and Engineering.",
             },
             {
@@ -382,6 +379,10 @@ export const caseStudies: CaseStudy[] = [
             {
               kind: "lead",
               text: "Marinas were running daily operations off a paper binder, by hand, with no history and no way to maximize occupancy.",
+            },
+            {
+              kind: "p",
+              text: "Dockwa is a marina management platform, finding efficiencies for marina operators and improving the experience for boaters on the water. Marina Map layered Dockwa's existing reservation data onto a live, interactive picture of the marina, so dockmasters could stop running operations off a hand-edited binder.",
             },
             {
               kind: "p",
@@ -523,26 +524,6 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
     },
-  },
-  {
-    slug: "design-practice-from-zero",
-    title: "Design Practice from Zero",
-    org: "Vendr",
-    outcome: "Built the design practice from zero through a $60M raise.",
-    role: "Lead Product Designer",
-    timeframe: "2020–2022",
-    content: null,
-    hidden: true,
-  },
-  {
-    slug: "databebe",
-    title: "databébé",
-    org: "Independent",
-    outcome: "Live B2C data-sync product, built solo, full stack.",
-    role: "Founder",
-    timeframe: "2026–PRESENT",
-    content: null,
-    hidden: true,
   },
 ];
 
