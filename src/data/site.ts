@@ -5,7 +5,7 @@ export const person = {
 
 export const about = {
   paragraphs: [
-    "I notice the system that's missing and go build it. With AI those systems got bigger and way more fun. Previously at HubSpot, Vendr, Agent.ai.",
+    "Product & Systems Designer. I notice the system that's missing and go build it. With AI those systems got bigger and way more fun. Previously at HubSpot, Vendr, Agent.ai.",
     "Off hours: planting dahlias in my little garden, online estate sales, and vampire novels.",
   ],
   firstSentence: "I notice the system that's missing and go build it.",
@@ -106,6 +106,12 @@ export const caseStudies: CaseStudy[] = [
           figureSrc: "/images/case-studies/agent-output-drift.png",
           figureCaption:
             "The same content type, rendered three ways by three agents, then resolved under one content system.",
+        },
+        {
+          heroFigure: {
+            label: "Layer Matrix",
+            caption: "The missing layer, owned by content architecture.",
+            srcs: ["/images/case-studies/layer-matrix.png"],
         },
         {
           label: "What I Built",
