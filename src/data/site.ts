@@ -316,13 +316,14 @@ export const caseStudies: CaseStudy[] = [
           figureSrc: "/images/case-studies/marina-map-new-map-view.webp",
           figureCaption: "The new interactive map view inside Assignments.",
         },
-        {
-          kind: "figure",
-          label: "Future state",
-          caption: "Future state designs."
-          srcs: ["/images/case-studies/marina-map-selfservice-docks.webp"],
-          standalone: true,
-        },
+         {
+              kind: "figure",
+              label: "Future State",
+              caption:
+                "Future state designs.",
+              srcs: ["/images/case-studies/rina-map-selfservice-docks.webp"],
+              standalone: true,
+            },
         {
           label: "How I Proved It",
           text: "Rolled out to 208 marinas with over 260 maps published, beating every target: 18% upgrades against a 10% goal, and map delivery cut from 22 days to 5.",
