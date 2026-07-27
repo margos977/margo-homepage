@@ -113,7 +113,7 @@ export const caseStudies: CaseStudy[] = [
         },
         {
           label: "How I Proved It",
-          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD. What came back was consistent with everything else in the system, and it surfaced edge cases my own audit had missed, which went back into the platform rules..",
+          text: "A blind run: a fresh model, no history, given only the system and a new agent's PRD. What came back was consistent with everything else in the system, and it surfaced edge cases my own audit had missed, which went back into the platform rules.",
           figureSrc: "/images/case-studies/pipeline-diagram.png",
           figureCaption:
             "A PRD compiled against the system into a reviewable output spec engineering builds from.",
