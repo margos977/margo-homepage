@@ -96,11 +96,11 @@ function CaseStudyFull() {
 
 function AtAGlance({ items }: { items: AtAGlanceItem[] }) {
   return (
-    <dl className="mt-8 flex flex-col border-t border-hairline">
+    <dl className="mt-8 flex flex-col">
       {items.map((item) => (
         <div
           key={item.label}
-          className="flex flex-col gap-2 border-b border-hairline py-4 sm:flex-row sm:gap-6"
+          className="flex flex-col gap-2 py-4 sm:flex-row sm:gap-6"
         >
           <dt className="label-mono w-40 shrink-0 pt-0.5 opacity-60">
             {item.label}
@@ -156,7 +156,8 @@ function buildSectionPlans(sections: CaseStudySectionData[]): SectionPlan[] {
         next &&
         next.kind === "figure" &&
         next.srcs &&
-        next.srcs.length === 1
+        next.srcs.length === 1 &&
+        !next.standalone
       ) {
         counter += 1;
         units.push({ kind: "pair", text: block, figure: next, figureIndex: counter });

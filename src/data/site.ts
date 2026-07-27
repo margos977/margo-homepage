@@ -32,6 +32,8 @@ export type ContentBlock =
       caption?: string;
       srcs?: string[];
       layout?: "grid" | "stack";
+      /** Always render full width below its preceding text, never side by side. */
+      standalone?: boolean;
     }
   | { kind: "pipelineDiagram" };
 
@@ -177,6 +179,7 @@ export const caseStudies: CaseStudy[] = [
               caption:
                 "The same content type, rendered three ways by three agents, then resolved under one content system.",
               srcs: ["/images/case-studies/agent-output-drift.png"],
+              standalone: true,
             },
           ],
         },
@@ -188,16 +191,17 @@ export const caseStudies: CaseStudy[] = [
               text: "Prompt engineering and design tokens each governed a layer; neither governed what the output contained, so I built the layer between them: a content system in three parts.",
             },
             {
-              kind: "labeledP",
-              lead: "A central registry of content types.",
-              text: "The shared dictionary every agent draws from, plus the rules binding each type to the component that renders it. Engineering already had a Timeline, a Table, a card grid. What it didn't have was a rule for which content goes in which one, what fills each slot, and what happens when a field comes back empty. Career history and funding rounds both render as a Timeline, but they sort in opposite directions and fail differently when a date is missing. Without that binding written down, three agents reach for the same component and fill it three different ways, and every one of those calls is valid from the component's side. That's where drift comes from.",
-            },
-            {
               kind: "figure",
               label: "Content Mapping",
               caption:
                 "Mappings from content entities.",
               srcs: ["/images/case-studies/content-mapping.png"],
+              standalone: true,
+            },
+            {
+              kind: "labeledP",
+              lead: "A central registry of content types.",
+              text: "The shared dictionary every agent draws from, plus the rules binding each type to the component that renders it. Engineering already had a Timeline, a Table, a card grid. What it didn't have was a rule for which content goes in which one, what fills each slot, and what happens when a field comes back empty. Career history and funding rounds both render as a Timeline, but they sort in opposite directions and fail differently when a date is missing. Without that binding written down, three agents reach for the same component and fill it three different ways, and every one of those calls is valid from the component's side. That's where drift comes from.",
             },
             {
               kind: "labeledP",
