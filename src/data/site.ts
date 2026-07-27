@@ -463,14 +463,14 @@ export const workHistory: WorkHistoryItem[] = [
     role: "Principal",
     timeframe: "2024–PRESENT",
     description:
-      "Product design and AI output systems for early-stage and AI-native SaaS teams. I design their products and build the systems that keep what their AI generates consistent and trustworthy across every surface.",
+      "End-to-end product and service design for early-stage SaaS. Build the shared standards governing how a team's AI outputs behave.",
   },
   {
     org: "Agent.ai",
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
     description:
-      "AI output system: governs what generated content contains and how it's structured, so the same content maps to the same structure on every agent, with consistent handling of low confidence, stale data, and errors across 24 agents.",
+      "Designed the product experience across a B2B agentic AI platform shipping 25+ agent types to sales, marketing, and ops teams. Led onboarding strategy, activation research, and platform-level context architecture.",
   },
   {
     org: "The Wanderlust Group",
