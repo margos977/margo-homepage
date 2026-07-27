@@ -7,6 +7,7 @@ import type {
 } from "@/data/site";
 import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
+import { PipelineDiagram } from "@/components/pipeline-diagram";
 
 export const Route = createFileRoute("/case-studies/$slug/full")({
   loader: ({ params }) => {
@@ -286,6 +287,8 @@ function Block({
       );
     case "figure":
       return <FullFigure block={block} startIndex={figureIndex} />;
+    case "pipelineDiagram":
+      return <PipelineDiagram />;
   }
 }
 

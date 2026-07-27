@@ -3,6 +3,7 @@ import { caseStudies } from "@/data/site";
 import type { CaseSnapshot, CaseSnapshotBeat, CaseStudy } from "@/data/site";
 import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
+import { PipelineDiagram } from "@/components/pipeline-diagram";
 
 export const Route = createFileRoute("/case-studies/$slug/")({
   loader: ({ params }) => {
@@ -165,6 +166,17 @@ function SnapshotBeat({
       </p>
     </div>
   );
+
+  if (beat.custom === "pipelineDiagram") {
+    return (
+      <div>
+        <div className="max-w-2xl">{textBlock}</div>
+        <div className="mt-8">
+          <PipelineDiagram />
+        </div>
+      </div>
+    );
+  }
 
   if (!beat.figureSrc) {
     return <div className="max-w-2xl">{textBlock}</div>;

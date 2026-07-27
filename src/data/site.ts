@@ -32,7 +32,8 @@ export type ContentBlock =
       caption?: string;
       srcs?: string[];
       layout?: "grid" | "stack";
-    };
+    }
+  | { kind: "pipelineDiagram" };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -55,6 +56,7 @@ export type CaseSnapshotBeat = {
   text: string;
   figureSrc?: string;
   figureCaption?: string;
+  custom?: "pipelineDiagram";
 };
 
 export type CaseSnapshot = {
@@ -110,9 +112,7 @@ export const caseStudies: CaseStudy[] = [
         {
           label: "What I Built",
           text: "A content system in three parts: a registry of content types and the structural primitives that arrange them, the platform-wide behavioral rules every agent inherits, and a generator that turns a PRD into a reviewable output spec.",
-          figureSrc: "/images/case-studies/pipeline-diagram.png",
-          figureCaption:
-            "A product spec compiles against the system into a reviewable output spec engineering builds from.",
+          custom: "pipelineDiagram",
         },
         {
           label: "How I Proved It",
@@ -207,11 +207,7 @@ export const caseStudies: CaseStudy[] = [
               text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec: the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering then builds from that. The structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
             },
             {
-              kind: "figure",
-              label: "Pipeline Diagram",
-              caption:
-                "A product spec compiles against the system into a reviewable output spec engineering builds from.",
-              srcs: ["/images/case-studies/pipeline-diagram.png"],
+              kind: "pipelineDiagram",
             },
           ],
         },
