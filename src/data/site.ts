@@ -146,6 +146,7 @@ export const caseStudies: CaseStudy[] = [
               label: "Inference Marker",
               caption:
                 "Facts stay plain; only the model's own judgment is marked as inferred.",
+              srcs: ["/images/case-studies/inference-marker.png"],
             },
             {
               kind: "labeledP",
