@@ -105,7 +105,7 @@ export const caseStudies: CaseStudy[] = [
       heroFigure: {
         label: "Layer Matrix",
         caption:
-          "The Missing Layer, owned by content architecture.",
+          "The missing layer, owned by content architecture.",
         srcs: ["/images/case-studies/layer-matrix.png"],
       },
       sections: [
@@ -154,11 +154,6 @@ export const caseStudies: CaseStudy[] = [
               text: "Uncertainty handling, null states, and copy limits live in one platform-wide rule set instead of being re-specified per agent. Every output marks inference the same way, every empty state explains itself the same way, every predictive figure carries its confidence the same way. A new agent starts compliant instead of starting from scratch.",
             },
             {
-              kind: "figure",
-              label: "Null-States Triptych",
-              caption: "One missing field, three correct behaviors: omit, explain, or flag.",
-            },
-            {
               kind: "labeledP",
               lead: "The system turns the PRD into an output spec engineering builds from.",
               text: "It reads a simplified PRD against the registry and the rules, then produces a designer-reviewable output spec: the sections, the content types, the edge cases, and the calls it couldn't make from the inputs alone, flagged for a human. Engineering then builds from that. The structure, fallbacks, and uncertainty rules are settled in design before anyone writes rendering code, instead of improvised in the prompt.",
@@ -193,12 +188,6 @@ export const caseStudies: CaseStudy[] = [
               kind: "labeledP",
               lead: "The validation was too soft.",
               text: "I was reviewing the pilot runs myself, and because I already knew what each output should look like, I kept reading right past edge cases that were only half-defined. It wasn't until I handed the system to a model with no context that those gaps actually showed up.",
-            },
-            {
-              kind: "figure",
-              label: "Spec Before/After",
-              caption:
-                "The over-done early spec vs. the stripped-down version that produced cleaner output.",
             },
           ],
         },
