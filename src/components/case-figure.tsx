@@ -6,12 +6,15 @@ export function CaseFigure({
   caption,
   index,
   bleed = false,
+  showFigureLabel = false,
 }: {
   src: string;
   alt: string;
   caption?: string;
   index?: number;
   bleed?: boolean;
+  /** Show "FIG. N" as persistent text above the caption instead of only on hover. */
+  showFigureLabel?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -37,10 +40,23 @@ export function CaseFigure({
             {typeof index === "number" ? `FIG. ${index}` : "ZOOM"}
           </span>
         </button>
-        {caption && (
-          <figcaption className="mt-3 text-center text-sm leading-[1.6] opacity-70">
-            {caption}
-          </figcaption>
+        {showFigureLabel ? (
+          caption && (
+            <figcaption className="mt-3 flex gap-3 text-sm leading-[1.6] opacity-70">
+              {typeof index === "number" && (
+                <span className="label-mono shrink-0 opacity-70">
+                  FIG. {String(index).padStart(2, "0")}
+                </span>
+              )}
+              <span>{caption}</span>
+            </figcaption>
+          )
+        ) : (
+          caption && (
+            <figcaption className="mt-3 text-center text-sm leading-[1.6] opacity-70">
+              {caption}
+            </figcaption>
+          )
         )}
       </figure>
 

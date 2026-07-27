@@ -70,6 +70,9 @@ export type CaseSnapshot = {
   heroCaption?: string;
   facts: { label: string; value: string }[];
   beats: CaseSnapshotBeat[];
+  /** Opts into the alternating side-by-side editorial layout instead of the default stacked one. */
+  layout?: "editorial";
+  stats?: { value: string; label: string }[];
 };
 
 export type CaseStudy = {
@@ -97,6 +100,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
     snapshot: {
+      layout: "editorial",
       heroSrc: "/images/case-studies/layer-matrix.png",
       heroCaption: "The missing layer, owned by content architecture.",
       facts: [
@@ -106,6 +110,11 @@ export const caseStudies: CaseStudy[] = [
           label: "Outcome",
           value: "Validated by blind test; planned for platform-wide adoption",
         },
+      ],
+      stats: [
+        { value: "24", label: "Live premium agents governed" },
+        { value: "3", label: "Parts: registry, rules, generator" },
+        { value: "1", label: "Blind run, zero prior context" },
       ],
       beats: [
         {
@@ -298,6 +307,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Product Design Manager",
     timeframe: "2022–2023",
     snapshot: {
+      layout: "editorial",
       heroSrc: "/images/case-studies/marina-map-whiteboard.png",
       heroCaption: "Example of white board map used before Marina Map.",
       facts: [
@@ -307,6 +317,11 @@ export const caseStudies: CaseStudy[] = [
           label: "Outcome",
           value: "18% upgrades against a 10% goal; delivery cut from 22 days to 5",
         },
+      ],
+      stats: [
+        { value: "208", label: "Marinas running on Marina Map" },
+        { value: "18%", label: "Upgrades against a 10% goal" },
+        { value: "77%", label: "Faster map delivery, 22 days to 5" },
       ],
       beats: [
         {
@@ -318,12 +333,16 @@ export const caseStudies: CaseStudy[] = [
           text: "An interactive picture of the marina, with Dockwa's live reservation data layered on top: in-house designers built the maps in Figma, a CSM annotated slip locations, and the customer got a new interactive map inside their Assignments tool.",
           figureSrc: "/images/case-studies/marina-map-new-map-view.webp",
           figureCaption: "The new interactive map view inside Assignments.",
-          secondaryFigureSrc: "/images/case-studies/marina-map-selfservice-docks.webp",
-          secondaryFigureCaption: "Future state designs.",
+          secondaryFigureSrc: "/images/case-studies/marina-map-annotation.webp",
+          secondaryFigureCaption: "A CSM annotates slip locations before publishing.",
         },
         {
           label: "How I Proved It",
           text: "Rolled out to 208 marinas with over 260 maps published, beating every target: 18% upgrades against a 10% goal, and map delivery cut from 22 days to 5.",
+          figureSrc: "/images/case-studies/marina-map-selfservice-location.webp",
+          figureCaption: "Future state: self-service map builder, designed but not yet shipped.",
+          secondaryFigureSrc: "/images/case-studies/marina-map-selfservice-docks.webp",
+          secondaryFigureCaption: "Future state: adding docks in the self-service flow.",
         },
       ],
     },
