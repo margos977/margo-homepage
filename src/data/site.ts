@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Generative UI Content Schema",
     org: "Agent.ai",
     outcome:
-      "One content system governing what 24 live agents show, how they mark uncertainty, and how they handle thin data",
+      "One content system governing what 24 live agents show, how they mark uncertainty, and how they handle thin data.",
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
     snapshot: {

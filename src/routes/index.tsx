@@ -48,7 +48,7 @@ function Home() {
                 </p>
                 <span
                   aria-hidden
-                  className="translate-x-[-4px] text-highlight opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100"
+                  className="translate-x-[-4px] opacity-0 transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100"
                 >
                   →
                 </span>

@@ -25,7 +25,7 @@ function CaseStudySnapshot() {
         to="/"
         hash="case-studies"
         hashScrollIntoView={{ behavior: "smooth" }}
-        className="label-mono opacity-60 transition-opacity hover:opacity-100"
+        className="label-mono opacity-60 transition-colors hover:text-highlight hover:opacity-100"
       >
         ← / CASE STUDIES
       </Link>
@@ -82,10 +82,11 @@ function SnapshotBody({
 }) {
   return (
     <>
+      <p className="mt-4 max-w-2xl text-xl leading-snug">{caseStudy.outcome}</p>
+
       <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
         <div className="flex flex-col justify-center">
-          <p className="max-w-md text-xl leading-snug">{caseStudy.outcome}</p>
-          <dl className="mt-8 flex flex-col border-t border-hairline">
+          <dl className="flex flex-col border-t border-hairline">
             {snapshot.facts.map((fact) => (
               <div
                 key={fact.label}
@@ -118,11 +119,13 @@ function SnapshotBody({
         <Link
           to="/case-studies/$slug/full"
           params={{ slug: caseStudy.slug }}
-          className="group mt-16 flex items-center justify-between gap-4 border border-hairline p-6 transition-opacity hover:opacity-80"
+          className="group mt-16 flex items-center justify-between gap-4 border border-hairline p-6"
         >
           <div>
             <p className="label-mono opacity-60">/ The Long Version</p>
-            <p className="mt-2 text-lg">Read the full case study</p>
+            <p className="mt-2 text-lg transition-colors group-hover:text-highlight">
+              Read the full case study
+            </p>
           </div>
           <span
             aria-hidden
@@ -137,7 +140,7 @@ function SnapshotBody({
         to="/"
         hash="case-studies"
         hashScrollIntoView={{ behavior: "smooth" }}
-        className="label-mono mt-16 inline-block opacity-60 transition-opacity hover:opacity-100"
+        className="label-mono mt-16 inline-block opacity-60 transition-colors hover:text-highlight hover:opacity-100"
       >
         ← / CASE STUDIES
       </Link>
