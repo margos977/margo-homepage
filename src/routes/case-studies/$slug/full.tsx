@@ -303,7 +303,7 @@ function FullFigure({
   block: FigureBlock;
   startIndex?: number;
 }) {
-  const { label, caption, srcs, layout = "grid" } = block;
+  const { label, caption, srcs, layout = "grid", standalone } = block;
 
   if (!srcs || srcs.length === 0) {
     return (
@@ -316,9 +316,10 @@ function FullFigure({
   }
 
   if (srcs.length === 1) {
-    return (
+    const figure = (
       <CaseFigure src={srcs[0]} alt={label} caption={caption} index={startIndex} />
     );
+    return standalone ? <div className="mx-auto w-[70%]">{figure}</div> : figure;
   }
 
   return (
