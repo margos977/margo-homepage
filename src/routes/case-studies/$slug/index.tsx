@@ -21,7 +21,7 @@ function CaseStudySnapshot() {
   const caseStudy = Route.useLoaderData();
 
   return (
-    <article className="mx-auto max-w-[52rem]">
+    <article className="w-full">
       <Link
         to="/"
         hash="case-studies"
