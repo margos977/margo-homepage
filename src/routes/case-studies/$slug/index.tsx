@@ -221,7 +221,7 @@ function EditorialSnapshotBody({
   return (
     <>
       <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_3fr] md:gap-12">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-start">
           <p className="max-w-2xl text-xl leading-snug">{caseStudy.outcome}</p>
           <dl className="mt-8 flex flex-col">
             {snapshot.facts.map((fact) => (
@@ -340,7 +340,7 @@ function EditorialSnapshotBeat({
     return (
       <div>
         {textBlock}
-        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <div className="mt-8 flex flex-col gap-8">
           <CaseFigure
             src={beat.figureSrc}
             alt={beat.label}
