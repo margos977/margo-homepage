@@ -318,10 +318,9 @@ export const caseStudies: CaseStudy[] = [
         },
          {
               kind: "figure",
-              label: "Future State",
               caption:
                 "Future state designs.",
-              srcs: ["/images/case-studies/rina-map-selfservice-docks.webp"],
+              srcs: ["/images/case-studies/marina-map-selfservice-docks.webp"],
               standalone: true,
             },
         {
