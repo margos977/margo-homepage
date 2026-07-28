@@ -7,6 +7,7 @@ import type {
 } from "@/data/site";
 import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
+import { CaseVideo } from "@/components/case-video";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
 import { ImageCarousel } from "@/components/image-carousel";
 
@@ -181,6 +182,13 @@ function buildSectionPlans(sections: CaseStudySectionData[]): SectionPlan[] {
         continue;
       }
 
+      if (block.kind === "video") {
+        counter += 1;
+        units.push({ kind: "solo", block, figureIndex: counter });
+        i += 1;
+        continue;
+      }
+
       units.push({ kind: "solo", block });
       i += 1;
     }
@@ -289,11 +297,27 @@ function Block({
       );
     case "figure":
       return <FullFigure block={block} startIndex={figureIndex} />;
+    case "video":
+      return <FullVideo block={block} index={figureIndex} />;
     case "pipelineDiagram":
       return <PipelineDiagram />;
     case "carousel":
       return <ImageCarousel srcs={block.srcs} alt={block.label} />;
   }
+}
+
+function FullVideo({
+  block,
+  index,
+}: {
+  block: ContentBlock & { kind: "video" };
+  index?: number;
+}) {
+  const { caption, src, poster, standalone = true } = block;
+  const video = (
+    <CaseVideo src={src} poster={poster} caption={caption} index={index} />
+  );
+  return standalone ? <div className="mx-auto w-[70%]">{video}</div> : video;
 }
 
 function FullFigure({

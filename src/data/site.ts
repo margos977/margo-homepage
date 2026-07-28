@@ -36,7 +36,16 @@ export type ContentBlock =
       standalone?: boolean;
     }
   | { kind: "pipelineDiagram" }
-  | { kind: "carousel"; label: string; srcs: string[] };
+  | { kind: "carousel"; label: string; srcs: string[] }
+  | {
+      kind: "video";
+      label: string;
+      caption?: string;
+      src: string;
+      poster?: string;
+      /** Always render full width below its preceding text, never side by side. Defaults to true. */
+      standalone?: boolean;
+    };
 
 export type AtAGlanceItem = { label: string; text: string; items?: string[] };
 
@@ -65,6 +74,12 @@ export type CaseSnapshotBeat = {
   custom?: "pipelineDiagram";
   /** Full width, image below the text, instead of the alternating side-by-side pairing. */
   standalone?: boolean;
+  /** Additional standalone figures stacked below figureSrc, each at 70% width. */
+  extraFigures?: { src: string; caption?: string }[];
+  /** A looping muted video instead of a static figure. Takes priority over figureSrc when set. */
+  videoSrc?: string;
+  videoCaption?: string;
+  videoPoster?: string;
 };
 
 export type CaseSnapshot = {
@@ -299,6 +314,62 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
     },
+  },
+  {
+    slug: "agent-builder",
+    title: "Agent Builder",
+    org: "Agent.ai",
+    outcome:
+      "A little to no code agent builder with over 50,000 published agents.",
+    role: "Lead Product Designer",
+    timeframe: "2025–2026",
+    snapshot: {
+      layout: "editorial",
+      heroSrc: "/images/case-studies/agent-builder-post-run.png",
+      heroCaption: "The redesigned agent builder, in the live product.",
+      facts: [
+        { label: "Role", value: "Lead Product Designer" },
+        {
+          label: "Scope",
+          value:
+            "Led redesign of the core agent-building tool on a platform that grew to 2M+ sign-ups across 180+ countries.",
+        },
+        {
+          label: "Outcome",
+          value:
+            "Opened a powerful but technical tool to non-technical builders without losing the power users who depended on its depth.",
+        },
+      ],
+      stats: [{ value: "50k+", label: "Agents published on the tool" }],
+      beats: [
+        {
+          label: "The Problem",
+          text: "Agent builder was powerful but originally built for technical users. We needed to open it to non-technical builders without breaking the depth power users relied on. Every decision had to serve both audiences at once.",
+        },
+        {
+          label: "What I Built",
+          text: "Restructured agent creation from six tabs into a two-page flow, reordered around how people actually think through building an agent. Redesigned the action library (nine tabs, no search, no descriptions) into a slide-out panel with fuzzy search and new categories. Added a live preview panel with a toggle for underlying code and context, so anyone could test and debug what they'd built. Redesigned the UI, implementing updated styles.",
+          figureSrc: "/images/case-studies/agent-builder-post-run.png",
+          figureCaption: "The two-page agent creation flow, restructured from six tabs.",
+          standalone: true,
+          extraFigures: [
+            {
+              src: "/images/case-studies/agent-builder-sidepanel-code.png",
+              caption: "The live preview panel, with a toggle for underlying code and context.",
+            },
+            {
+              src: "/images/case-studies/agent-builder-action-library-search.png",
+              caption: "The action library, redesigned as a slide-out panel with fuzzy search.",
+            },
+          ],
+        },
+        {
+          label: "How I Proved It",
+          text: "Validated through user testing with both technical and non-technical builders, confirming the redesign held up for power users while opening the tool to newcomers. Quantitative validation against activation metrics is in progress.",
+        },
+      ],
+    },
+    content: null,
   },
   {
     slug: "marina-map",

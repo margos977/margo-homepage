@@ -3,6 +3,7 @@ import { caseStudies } from "@/data/site";
 import type { CaseSnapshot, CaseSnapshotBeat, CaseStudy } from "@/data/site";
 import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
+import { CaseVideo } from "@/components/case-video";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
 
 export const Route = createFileRoute("/case-studies/$slug/")({
@@ -214,8 +215,9 @@ function EditorialSnapshotBody({
   let figureCounter = 0;
   const heroFigIndex = snapshot.heroSrc ? ++figureCounter : undefined;
   const beatFigIndices = snapshot.beats.map((beat) => ({
-    figIndex: beat.figureSrc ? ++figureCounter : undefined,
+    figIndex: beat.figureSrc || beat.videoSrc ? ++figureCounter : undefined,
     secondaryFigIndex: beat.secondaryFigureSrc ? ++figureCounter : undefined,
+    extraFigIndices: beat.extraFigures?.map(() => ++figureCounter),
   }));
 
   return (
@@ -266,11 +268,12 @@ function EditorialSnapshotBody({
             index={i}
             figIndex={beatFigIndices[i].figIndex}
             secondaryFigIndex={beatFigIndices[i].secondaryFigIndex}
+            extraFigIndices={beatFigIndices[i].extraFigIndices}
           />
         ))}
       </div>
 
-      {caseStudy.content && (
+      {caseStudy.content ? (
         <Link
           to="/case-studies/$slug/full"
           params={{ slug: caseStudy.slug }}
@@ -289,6 +292,16 @@ function EditorialSnapshotBody({
             →
           </span>
         </Link>
+      ) : (
+        <div className="mt-16 flex items-center justify-between gap-4 border border-hairline p-6 opacity-50">
+          <div>
+            <p className="label-mono opacity-60">/ The Long Version</p>
+            <p className="mt-2 text-lg leading-tight">Read the full case study</p>
+          </div>
+          <span className="label-mono shrink-0 border border-hairline px-2 py-1">
+            Coming soon
+          </span>
+        </div>
       )}
 
       <Link
@@ -308,16 +321,18 @@ function EditorialSnapshotBeat({
   index,
   figIndex,
   secondaryFigIndex,
+  extraFigIndices,
 }: {
   beat: CaseSnapshotBeat;
   index: number;
   figIndex?: number;
   secondaryFigIndex?: number;
+  extraFigIndices?: number[];
 }) {
   const imageFirst = index % 2 === 0;
 
   const textBlock = (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-start">
       <p className="label-mono opacity-60">/ {beat.label.toUpperCase()}</p>
       <p className="mt-4 text-[17px] leading-[1.6]">{beat.text}</p>
     </div>
@@ -334,8 +349,55 @@ function EditorialSnapshotBeat({
     );
   }
 
+  if (beat.videoSrc) {
+    return (
+      <div>
+        {textBlock}
+        <div className="mx-auto mt-8 w-[70%]">
+          <CaseVideo
+            src={beat.videoSrc}
+            poster={beat.videoPoster}
+            caption={beat.videoCaption}
+            index={figIndex}
+            showFigureLabel
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (!beat.figureSrc) {
     return <div>{textBlock}</div>;
+  }
+
+  if (beat.extraFigures && beat.extraFigures.length > 0) {
+    return (
+      <div>
+        {textBlock}
+        <div className="mt-8 flex flex-col gap-8">
+          <div className="mx-auto w-[70%]">
+            <CaseFigure
+              src={beat.figureSrc}
+              alt={beat.label}
+              caption={beat.figureCaption}
+              index={figIndex}
+              showFigureLabel
+            />
+          </div>
+          {beat.extraFigures.map((fig, i) => (
+            <div key={fig.src} className="mx-auto w-[70%]">
+              <CaseFigure
+                src={fig.src}
+                alt={beat.label}
+                caption={fig.caption}
+                index={extraFigIndices?.[i]}
+                showFigureLabel
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   if (beat.secondaryFigureSrc) {
