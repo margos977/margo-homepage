@@ -250,13 +250,18 @@ function EditorialSnapshotBody({
       </div>
 
       {snapshot.stats && (
-        <div className="mt-16 grid grid-cols-1 gap-8 border-y border-hairline py-8 sm:grid-cols-3">
-          {snapshot.stats.map((stat) => (
-            <div key={stat.label} className={stat.pending ? "opacity-50" : undefined}>
-              <p className="text-5xl leading-none">{stat.value}</p>
-              <p className="label-mono mt-3 opacity-60">{stat.label}</p>
-            </div>
-          ))}
+        <div className="mt-16">
+          <div className="grid grid-cols-1 gap-8 border-y border-hairline py-8 sm:grid-cols-3">
+            {snapshot.stats.map((stat) => (
+              <div key={stat.label} className={stat.pending ? "opacity-50" : undefined}>
+                <p className="text-5xl leading-none">{stat.value}</p>
+                <p className="label-mono mt-3 opacity-60">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          {snapshot.statsCaption && (
+            <p className="label-mono mt-4 opacity-60">{snapshot.statsCaption}</p>
+          )}
         </div>
       )}
 

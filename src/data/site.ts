@@ -90,6 +90,8 @@ export type CaseSnapshot = {
   /** Opts into the alternating side-by-side editorial layout instead of the default stacked one. */
   layout?: "editorial";
   stats?: { value: string; label: string; pending?: boolean }[];
+  /** Small muted caption shown below the stats row. */
+  statsCaption?: string;
 };
 
 export type CaseStudy = {
@@ -320,7 +322,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Agent Builder",
     org: "Agent.ai",
     outcome:
-      "A little to no code agent builder with over 50,000 published agents.",
+      "A low-to-no-code agent builder that took 18,000+ builders from idea to a live, running agent.",
     role: "Lead Product Designer",
     timeframe: "2025–2026",
     snapshot: {
@@ -341,9 +343,11 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
       stats: [
-        { value: "50k+", label: "Agents published on the tool" },
-        { value: "···", label: "More metrics coming soon", pending: true },
+        { value: "87,000+", label: "Granted builder access" },
+        { value: "49,000+", label: "Published agents" },
+        { value: "18,000+", label: "Publicly published agents" },
       ],
+      statsCaption: "Most builders kept their agents private.",
       beats: [
         {
           label: "The Problem",
@@ -368,7 +372,7 @@ export const caseStudies: CaseStudy[] = [
         },
         {
           label: "How I Proved It",
-          text: "Validated through user testing with both technical and non-technical builders, confirming the redesign held up for power users while opening the tool to newcomers. Quantitative validation against activation metrics is in progress.",
+          text: "Validated through user testing with both technical and non-technical builders, confirming the redesign held up for power users while opening the tool to newcomers. The tool was later acquired by HubSpot for its own Agent Builder, external validation of the core bet that the agent-building layer was the thing worth owning.",
         },
       ],
     },
