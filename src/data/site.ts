@@ -89,7 +89,7 @@ export type CaseSnapshot = {
   beats: CaseSnapshotBeat[];
   /** Opts into the alternating side-by-side editorial layout instead of the default stacked one. */
   layout?: "editorial";
-  stats?: { value: string; label: string }[];
+  stats?: { value: string; label: string; pending?: boolean }[];
 };
 
 export type CaseStudy = {
@@ -340,7 +340,10 @@ export const caseStudies: CaseStudy[] = [
             "Opened a powerful but technical tool to non-technical builders without losing the power users who depended on its depth.",
         },
       ],
-      stats: [{ value: "50k+", label: "Agents published on the tool" }],
+      stats: [
+        { value: "50k+", label: "Agents published on the tool" },
+        { value: "···", label: "More metrics coming soon", pending: true },
+      ],
       beats: [
         {
           label: "The Problem",

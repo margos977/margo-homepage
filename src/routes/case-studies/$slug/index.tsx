@@ -252,7 +252,7 @@ function EditorialSnapshotBody({
       {snapshot.stats && (
         <div className="mt-16 grid grid-cols-1 gap-8 border-y border-hairline py-8 sm:grid-cols-3">
           {snapshot.stats.map((stat) => (
-            <div key={stat.label}>
+            <div key={stat.label} className={stat.pending ? "opacity-50" : undefined}>
               <p className="text-5xl leading-none">{stat.value}</p>
               <p className="label-mono mt-3 opacity-60">{stat.label}</p>
             </div>
@@ -384,17 +384,18 @@ function EditorialSnapshotBeat({
               showFigureLabel
             />
           </div>
-          {beat.extraFigures.map((fig, i) => (
-            <div key={fig.src} className="mx-auto w-[70%]">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {beat.extraFigures.map((fig, i) => (
               <CaseFigure
+                key={fig.src}
                 src={fig.src}
                 alt={beat.label}
                 caption={fig.caption}
                 index={extraFigIndices?.[i]}
                 showFigureLabel
               />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
