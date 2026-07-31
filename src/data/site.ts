@@ -5,7 +5,9 @@ export const person = {
 
 export const about = {
   paragraphs: [
-    "Product & Systems Designer. I notice the system that's missing and go build it. With AI those systems got bigger and way more fun. Previously at HubSpot, Vendr, Agent.ai.",
+    "Product & Systems Designer. I notice the system that's missing and go build it.",
+    "For eleven years I've designed B2B products top to bottom, from the logic and systems that decide how a product works to the interface people use to work it. AI has broadened the scope of this work and, honestly, made it more fun.",
+    "Previously at HubSpot, Vendr, The Wanderlust Group, Agent.ai.",
     "Off hours: planting dahlias in my little garden, online estate sales, and vampire novels.",
   ],
   firstSentence: "I notice the system that's missing and go build it.",
@@ -24,6 +26,7 @@ export type ContentBlock =
   | { kind: "p"; text: string }
   | { kind: "lead"; text: string }
   | { kind: "labeledP"; lead: string; text: string }
+  | { kind: "linkedP"; before: string; linkLabel: string; to: string; after?: string }
   | { kind: "list"; items: ListItem[] }
   | { kind: "subheading"; text: string }
   | {
@@ -68,6 +71,10 @@ export type CaseSnapshotBeat = {
   text: string;
   figureSrc?: string;
   figureCaption?: string;
+  /** Small label-mono heading shown above the figure, e.g. "Before → After". */
+  figureHeading?: string;
+  /** Overrides the default alternating image/text order (index % 2 === 0) when set. */
+  imageFirst?: boolean;
   /** Stacked directly below figureSrc, e.g. for a related follow-up image. */
   secondaryFigureSrc?: string;
   secondaryFigureCaption?: string;
@@ -107,6 +114,8 @@ export type CaseStudy = {
   snapshot?: CaseSnapshot;
   /** Hidden from the case-studies list and unreachable by direct URL while true. */
   hidden?: boolean;
+  /** Discipline/scale chips shown on the snapshot, full, and home-list views. */
+  tags?: string[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -118,6 +127,7 @@ export const caseStudies: CaseStudy[] = [
       "One content system governing what 24 live agents show, how they mark uncertainty, and how they handle thin data.",
     role: "Lead Product Designer, Agentic AI",
     timeframe: "2025–2026",
+    tags: ["Systems Design", "0-to-1"],
     snapshot: {
       layout: "editorial",
       heroSrc: "/images/case-studies/layer-matrix.png",
@@ -140,8 +150,10 @@ export const caseStudies: CaseStudy[] = [
           label: "The Problem",
           text: "Visual consistency was high, but output content drifted across every agent. No one owned the layer that governs it, so engineers were making product decisions in code while trying to ship.",
           figureSrc: "/images/case-studies/agent-output-drift.png",
+          figureHeading: "Before → After",
           figureCaption:
             "The same content type, rendered three ways by three agents, then resolved under one content system.",
+          imageFirst: false,
         },
         {
           label: "What I Built",
@@ -161,6 +173,7 @@ export const caseStudies: CaseStudy[] = [
       headline:
         "Governing what two dozen AI agents say, not just how they look",
       intro: [
+        "Agent.ai is a marketplace where you hire AI agents for specific jobs. As it scaled, output quality became the bottleneck: every agent presented information its own way, with no shared standard for how AI should behave when it was uncertain, working from stale data, or wrong.",
         "When Agent.ai grew to 24 live premium agents, the interface stayed relatively consistent because every team pulled from the same design system. But the content inside those components drifted. One agent showed confidence as a percentage, another as a badge, a third left uncertainty off the output entirely. The visual layer had a clear owner. The layer underneath (what an output contains, how it marks a guess, what it does when data is thin) had none, so it fell to whichever engineer was shipping that agent's prompt.",
       ],
       contextNote:
@@ -288,6 +301,25 @@ export const caseStudies: CaseStudy[] = [
           ],
         },
         {
+          heading: "Impact",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Validated, not shipped. Agent.ai was acquired before rollout could happen.",
+            },
+            {
+              kind: "labeledP",
+              lead: "Differentiation (the bet).",
+              text: "In a marketplace crowded with agents of uneven quality, the reliability of Agent.ai's own agents was the intended edge. The schema was designed to be the shared standard that would let its first-party agents clear a single trust bar, instead of each agent re-deciding how to handle uncertainty, stale data, and errors.",
+            },
+            {
+              kind: "labeledP",
+              lead: "Validation.",
+              text: "The spec pipeline built on this schema beat a full written PRD in blind testing.",
+            },
+          ],
+        },
+        {
           heading: "What's next: self-serve governance",
           blocks: [
             {
@@ -325,6 +357,7 @@ export const caseStudies: CaseStudy[] = [
       "A low-to-no-code agent builder that took 18,000+ builders from idea to a live, running agent.",
     role: "Lead Product Designer",
     timeframe: "2025–2026",
+    tags: ["Interaction Design", "1-to-Scaled"],
     snapshot: {
       layout: "editorial",
       heroSrc: "/images/case-studies/agent-builder-post-run.png",
@@ -343,9 +376,21 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
       stats: [
-        { value: "87,000+", label: "Granted builder access" },
-        { value: "49,000+", label: "Published agents" },
+        {
+          value: "87,000+",
+          label:
+            "Granted builder access ([TODO: define '87,000+ access' meaning + window])",
+        },
+        {
+          value: "49,000+",
+          label: "Published agents (cumulative, all-time; not post-redesign)",
+        },
         { value: "18,000+", label: "Publicly published agents" },
+        {
+          value: "[PENDING MIXPANEL]",
+          label: "Start-to-publish conversion, before vs. after redesign",
+          pending: true,
+        },
       ],
       statsCaption: "Most builders kept their agents private.",
       beats: [
@@ -355,9 +400,10 @@ export const caseStudies: CaseStudy[] = [
         },
         {
           label: "What I Built",
-          text: "Restructured agent creation from six tabs into a two-page flow, reordered around how people actually think through building an agent. Redesigned the action library (nine tabs, no search, no descriptions) into a slide-out panel with fuzzy search and new categories. Added a live preview panel with a toggle for underlying code and context, so anyone could test and debug what they'd built. Redesigned the UI, implementing updated styles.",
+          text: 'Restructured agent creation from four pages into a two-page flow ("Create" and "Settings"), reordered around how people actually think through building an agent. Redesigned the action library (seven tabs, no search, no descriptions) into a slide-out panel with fuzzy search and new categories. Added a live preview panel with a toggle for underlying code and context, so anyone could test and debug what they\'d built. Redesigned the UI, implementing updated styles.',
           figureSrc: "/images/case-studies/agent-builder-post-run.png",
-          figureCaption: "The two-page agent creation flow, restructured from six tabs.",
+          figureCaption:
+            'The two-page agent creation flow ("Create" and "Settings"), restructured from four pages.',
           standalone: true,
           extraFigures: [
             {
@@ -386,6 +432,7 @@ export const caseStudies: CaseStudy[] = [
       "18% upgrades against a 10% goal; map delivery cut from 22 days to 5 across 208 marinas.",
     role: "Product Design Manager",
     timeframe: "2022–2023",
+    tags: ["Growth", "Interaction Design", "0-to-1"],
     snapshot: {
       layout: "editorial",
       heroSrc: "/images/case-studies/marina-map-whiteboard.png",
@@ -419,9 +466,6 @@ export const caseStudies: CaseStudy[] = [
         {
           label: "How I Proved It",
           text: "Rolled out to 208 marinas with over 260 maps published, beating every target: 18% upgrades against a 10% goal, and map delivery cut from 22 days to 5.",
-          figureSrc: "/images/case-studies/rollout.png",
-          figureCaption: "Rolled out to 208 marinas.",
-          standalone: true,
         },
       ],
     },
@@ -466,6 +510,10 @@ export const caseStudies: CaseStudy[] = [
               kind: "p",
               text: "Marinas use a marina map to see which slips are open and manage the day to day. The industry standard is physical: a large in-office whiteboard, or more often a binder with the map printed for each day of the year, filled in and edited by hand every morning. It's slow, it's error-prone, and it makes true occupancy maximization impossible.",
             },
+            {
+              kind: "p",
+              text: "Marina Map was also Dockwa's next paid add-on. Beyond fixing a daily operational headache for marinas, it was a lever to upgrade the existing paying customer base, so the feature carried a dual mandate: useful enough for dockmasters to adopt daily, and valuable enough to move operators up a tier.",
+            },
           ],
         },
         {
@@ -507,22 +555,29 @@ export const caseStudies: CaseStudy[] = [
             },
             {
               kind: "p",
-              text: "Layering the existing reservation and assignment data onto a new view turned out to be quick. The hard part (the real design problem) was automating map creation and teaching the reservation data where to sit on the map. Working with engineering and my PM, and after two Crazy 8 sessions with the pod, three pieces emerged:",
+              text: "Before Marina Map, no map existed inside Dockwa and no marina's slips were digitized anywhere in the product. Standing the feature up meant designing two things at once: the customer-facing view, and the internal pipeline that produces and publishes each marina's map. Three areas emerged:",
             },
             {
               kind: "labeledP",
-              lead: "Map creation.",
+              lead: "Map creation (internal).",
               text: "In-house designers built standardized marina maps in Figma from the customer's existing map and Google satellite imagery, using a component library of stylized dock elements and auto-layout, then exported them as SVGs.",
             },
             {
               kind: "labeledP",
-              lead: "Annotation.",
+              lead: "Map annotation (internal, required before any map works).",
               text: "A CSM imported the SVG into a new Settings page and dragged the marina's defined slips onto the image in the right spots.",
             },
             {
               kind: "labeledP",
               lead: "Customer-facing map view.",
               text: "Once the CSM published, the customer got a new interactive map inside their Assignments tool.",
+            },
+            {
+              kind: "linkedP",
+              before: "This create-annotate-deliver pipeline is what my ",
+              linkLabel: "Scaling Systems, Marina Map",
+              to: "scaling-systems-marina-map",
+              after: " case study scales.",
             },
             {
               kind: "carousel",
@@ -572,8 +627,12 @@ export const caseStudies: CaseStudy[] = [
               text: "Upgrades and purchases came in over 18% against a 10% goal: paying customers who upgraded their tier or bought Dockwa because of Marina Map. On time savings, more than 55 marinas dropped their physical maps entirely, saving those users over ten hours a week. Nights booked rose too; we couldn't tie the increase directly to the map, but Dockwa saw a marked lift as marinas moved onto the feature.",
             },
             {
-              kind: "p",
-              text: "And the process itself got dramatically faster. Over eight months I cut the “in design” phase of map creation from 22 days to 5 (a 77% reduction) through the annotation automation, streamlined data collection from marinas, and the Figma component system, which got the tool into customers' hands far sooner.",
+              kind: "linkedP",
+              before:
+                "Faster delivery at scale: The 'In Design' phase, the internal time to produce and publish one marina's map from asset collection to a live view, dropped from 22 days to 5, a 77% cut, through process automation, tighter data collection, and reusable Figma components. Getting the tool into customers' hands faster is what let the feature scale to 208 marinas. The delivery system behind this 22 to 5 day cut is documented in ",
+              linkLabel: "Scaling Systems, Marina Map",
+              to: "scaling-systems-marina-map",
+              after: ".",
             },
           ],
         },
@@ -602,6 +661,216 @@ export const caseStudies: CaseStudy[] = [
         },
       ],
     },
+  },
+  {
+    slug: "scaling-systems-marina-map",
+    title: "Scaling Systems, Marina Map",
+    org: "The Wanderlust Group",
+    outcome:
+      "Rolling out and scaling the Marina Map feature: the operational system behind delivery.",
+    role: "Product Design Manager",
+    timeframe: "2022–2023",
+    tags: ["Systems Design", "1-to-Scaled"],
+    snapshot: {
+      layout: "editorial",
+      heroSrc: "/images/case-studies/rollout.png",
+      heroCaption: "Rolled out to 208 marinas.",
+      facts: [
+        { label: "Role", value: "Product Design Manager" },
+        {
+          label: "Scope",
+          value: "Two-phase delivery system behind Marina Map's rollout to 208 marinas",
+        },
+        {
+          label: "Outcome",
+          value: "Cut the 'In Design' phase from 22 days to 5, a 77% reduction",
+        },
+      ],
+      stats: [
+        { value: "22 → 5", label: "Days in the \"In Design\" phase" },
+        { value: "77%", label: "Faster map delivery" },
+        { value: "208", label: "Marinas served by this pipeline" },
+      ],
+      beats: [
+        {
+          label: "The Problem",
+          text: "The Marina Map MVP shipped with heavy manual processes to hit the timeline. As map requests climbed, those manual steps (no customer directions, ad hoc handoffs, no delivery-time estimates) became the bottleneck, and Product Design was spending about 35 hours a week creating maps in Figma.",
+        },
+        {
+          label: "What I Designed",
+          text: "A two-phase delivery system: first, automation and outsourced asset creation with a Slack-triggered handoff; then a consolidated JIRA workflow with an embedded design agency and a company-wide SLA.",
+        },
+        {
+          label: "How I Proved It",
+          text: "The internal 'In Design' phase (asset collection to a live map) dropped from 22 days to 5, a 77% cut, letting the feature scale to 208 marinas without scaling headcount.",
+        },
+      ],
+    },
+    content: {
+      headline: "The operational system behind Marina Map's rollout to 208 marinas",
+      sections: [
+        {
+          heading: "Problem",
+          blocks: [
+            {
+              kind: "linkedP",
+              before: "The companion to my ",
+              linkLabel: "Marina Map",
+              to: "marina-map",
+              after:
+                " case study. Marina Map is the product; this is the delivery system that let it scale.",
+            },
+            {
+              kind: "lead",
+              text: "The Marina Map MVP shipped with heavy manual processes behind the scenes to hit the timeline. As the feature gained traction and map requests climbed, those manual steps became the bottleneck.",
+            },
+            {
+              kind: "list",
+              items: [
+                {
+                  text: "No directions or examples for customers, so they sent low-quality content, and designers and CSMs burned hours hunting down the right information.",
+                },
+                {
+                  text: "Product Design was spending about 35 hours a week creating maps in Figma.",
+                },
+                {
+                  text: "No scalable workflow to hand off completed content to the design team, and no accurate way to set delivery-time expectations with customers.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Goals",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Cut the manual work everywhere it showed up: in collecting assets, in managing status internally, and in customer time to value.",
+            },
+            {
+              kind: "list",
+              items: [
+                { text: "Cut time spent collecting marina assets and creating maps." },
+                {
+                  text: "Cut internal time spent communicating status and managing assets.",
+                },
+                { text: "Cut customer onboarding time and time to value." },
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Solution",
+          blocks: [
+            {
+              kind: "lead",
+              text: "Two phases: first add automation around the existing manual process, then consolidate it into a single system with an embedded agency.",
+            },
+            {
+              kind: "subheading",
+              text: "Phase I: Automate and outsource asset creation",
+            },
+            {
+              kind: "list",
+              items: [
+                {
+                  lead: "Intake.",
+                  text: "A CSM submits a Google Form when a customer opts into the feature, with detailed map questions plus photo uploads.",
+                },
+                {
+                  lead: "Routing.",
+                  text: "On submit, Zapier adds the content to a shared Google folder and generates a Google Doc from a template.",
+                },
+                {
+                  lead: "Creation.",
+                  text: "The doc goes to Fiverr design contractors for Figma map creation.",
+                },
+                {
+                  lead: "Handoff.",
+                  text: "When the map lands in the Done folder, Zapier posts a Slack message tagging the CSM that it's ready for upload.",
+                },
+              ],
+            },
+            {
+              kind: "subheading",
+              text: "Phase II: Consolidate into JIRA, embed an agency",
+            },
+            {
+              kind: "list",
+              items: [
+                {
+                  lead: "Set expectations up front.",
+                  text: "A Marina Map PDF goes to every customer on opt-in, relaying required info and acceptable image types before they submit anything.",
+                },
+                {
+                  lead: "Intake.",
+                  text: "A CSM submits a JIRA form, auto-creating an issue with the details and assigning it to the agency designers.",
+                },
+                {
+                  lead: "SLA.",
+                  text: "Company-wide SLA set: map returned for customer approval within 10 business days of submission.",
+                },
+                {
+                  lead: "Delivery.",
+                  text: "Agency designers attach finished maps to the JIRA issue and move it to In Review.",
+                },
+                {
+                  lead: "Review.",
+                  text: "The CSM is auto-alerted, reviews, and moves it to Done.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          heading: "Results",
+          blocks: [
+            {
+              kind: "lead",
+              text: "The two-phase rollout cut internal production time and customer wait time at once.",
+            },
+            {
+              kind: "list",
+              items: [
+                {
+                  lead: "Faster delivery at scale.",
+                  text: "The \"In Design\" phase, the internal time to produce and publish a map, dropped from 22 days to 5, a 77% cut, through outsourced asset creation, JIRA automation, and Figma auto-layouts.",
+                },
+                {
+                  lead: "Expectation-setting.",
+                  text: "Relaying requirements to customers up front cut time spent chasing marina images and details.",
+                },
+                {
+                  lead: "Time to value.",
+                  text: "Customers received their paid feature far faster, under an average 10-business-day turnaround, and sentiment improved.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          heading: "What's next",
+          blocks: [
+            {
+              kind: "p",
+              text: "As request volume and marina size grew, time in the Annotation phase began to spike, strained by an internally built annotation tool. Not captured in this data: as I left Dockwa, the product design team was introducing bulk slip editing and using Figma's variant tool to auto-annotate boats on import.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  // TODO: Build out full Vendr case study. Cleanest 0-to-1 proof point
+  // (first designer, data-dense B2B, contributed to a $60M raise).
+  {
+    slug: "vendr",
+    title: "Vendr",
+    org: "Vendr",
+    outcome: "[TODO: Vendr case study]",
+    role: "Lead Product Designer",
+    timeframe: "2020–2022",
+    content: null,
+    hidden: true,
   },
 ];
 

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { about, caseStudies, metadata, workHistory } from "@/data/site";
 import { WorkTable } from "@/components/work-table";
+import { CaseTags } from "@/components/case-tags";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -54,6 +55,7 @@ function Home() {
                 </span>
               </div>
               <p className="max-w-2xl leading-[1.6] opacity-80">{cs.outcome}</p>
+              {cs.tags && <CaseTags tags={cs.tags} />}
             </Link>
           ))}
         </div>

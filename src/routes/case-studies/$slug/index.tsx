@@ -5,6 +5,7 @@ import { NotFound } from "@/components/not-found";
 import { CaseFigure } from "@/components/case-figure";
 import { CaseVideo } from "@/components/case-video";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
+import { CaseTags } from "@/components/case-tags";
 
 export const Route = createFileRoute("/case-studies/$slug/")({
   loader: ({ params }) => {
@@ -42,6 +43,12 @@ function CaseStudySnapshot() {
       </div>
 
       <h1 className="mt-2 text-4xl leading-tight">{caseStudy.title}</h1>
+
+      {caseStudy.tags && (
+        <div className="mt-3">
+          <CaseTags tags={caseStudy.tags} />
+        </div>
+      )}
 
       {caseStudy.snapshot ? (
         caseStudy.snapshot.layout === "editorial" ? (
@@ -334,7 +341,7 @@ function EditorialSnapshotBeat({
   secondaryFigIndex?: number;
   extraFigIndices?: number[];
 }) {
-  const imageFirst = index % 2 === 0;
+  const imageFirst = beat.imageFirst ?? index % 2 === 0;
 
   const textBlock = (
     <div className="flex flex-col justify-start">
@@ -448,13 +455,18 @@ function EditorialSnapshotBeat({
   }
 
   const figureBlock = (
-    <CaseFigure
-      src={beat.figureSrc}
-      alt={beat.label}
-      caption={beat.figureCaption}
-      index={figIndex}
-      showFigureLabel
-    />
+    <div>
+      {beat.figureHeading && (
+        <p className="label-mono mb-3 opacity-60">{beat.figureHeading}</p>
+      )}
+      <CaseFigure
+        src={beat.figureSrc}
+        alt={beat.label}
+        caption={beat.figureCaption}
+        index={figIndex}
+        showFigureLabel
+      />
+    </div>
   );
 
   return (

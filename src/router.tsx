@@ -34,7 +34,7 @@ function RouteErrorFallback({ error }: { error: unknown }) {
     <div>
       <p className="label-mono opacity-60">/ Something Broke</p>
       <p className="mt-4 max-w-md leading-[1.6]">
-        This page hit an error loading. Reloading usually fixes it — the
+        This page hit an error loading. Reloading usually fixes it. The
         site may have just been updated.
       </p>
       <button

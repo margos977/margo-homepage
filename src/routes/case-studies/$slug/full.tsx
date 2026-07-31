@@ -10,6 +10,7 @@ import { CaseFigure } from "@/components/case-figure";
 import { CaseVideo } from "@/components/case-video";
 import { PipelineDiagram } from "@/components/pipeline-diagram";
 import { ImageCarousel } from "@/components/image-carousel";
+import { CaseTags } from "@/components/case-tags";
 
 export const Route = createFileRoute("/case-studies/$slug/full")({
   loader: ({ params }) => {
@@ -48,6 +49,13 @@ function CaseStudyFull() {
       </div>
 
       <h1 className="mt-2 text-4xl leading-tight">{caseStudy.title}</h1>
+
+      {caseStudy.tags && (
+        <div className="mt-3">
+          <CaseTags tags={caseStudy.tags} />
+        </div>
+      )}
+
       <p className="mt-4 text-xl leading-snug">{content.headline}</p>
 
       {content.intro && (
@@ -280,6 +288,20 @@ function Block({
       return (
         <p className="leading-[1.6]">
           <span className="font-medium">{block.lead}</span> {block.text}
+        </p>
+      );
+    case "linkedP":
+      return (
+        <p className="leading-[1.6]">
+          {block.before}
+          <Link
+            to="/case-studies/$slug"
+            params={{ slug: block.to }}
+            className="underline underline-offset-2 hover:opacity-70"
+          >
+            {block.linkLabel}
+          </Link>
+          {block.after}
         </p>
       );
     case "subheading":
