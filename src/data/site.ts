@@ -708,6 +708,11 @@ export const caseStudies: CaseStudy[] = [
     },
     content: {
       headline: "The operational system behind Marina Map's rollout to 208 marinas",
+      heroFigure: {
+        label: "Rollout",
+        caption: "Rolled out to 208 marinas.",
+        srcs: ["/images/case-studies/rollout.png"],
+      },
       sections: [
         {
           heading: "Problem",
